@@ -1,0 +1,242 @@
+@theme {
+    /* Breakpoints ***********************************************************/
+    /*************************************************************************/
+    --breakpoint-xxs: 400px;
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+    --breakpoint-3xl: 1920px;
+
+    /* Z-indexes */
+    --z-index-menu-overlay: 1000;
+    --z-index-menu: 1000;
+    --z-index-header: 999;
+
+    /* Typography ************************************************************/
+    /*************************************************************************/
+    --font-size-base: 16px;
+    --font-size-base--line-height: 20px;
+    --font-size-sm: 14px;
+    --font-size-sm--line-height: 18px;
+    --font-size-xs: 12px;
+    --font-size-xs--line-height: 16px;
+
+    /* Transitions & Animations **********************************************/
+    /*************************************************************************/
+    --transition-duration-xs: 250ms;
+
+    /* Light Theme (Default) *************************************************/
+    /*************************************************************************/
+
+    /* Background Colors */
+    --background-color-primary: var(--colors-white);
+    --background-color-secondary: var(--colors-zinc-100);
+    --background-color-tertiary: var(--colors-zinc-200);
+    --background-color-quaternary: var(--colors-zinc-300);
+    --background-color-success: var(--colors-green-100);
+    --background-color-error: var(--colors-red-100);
+    --background-color-button-primary: var(--colors-blue-600);
+    --background-color-button-secondary: var(--colors-blue-600);
+    --background-color-button-icon: var(--colors-blue-600);
+    --background-color-select: var(--background-color-quaternary);
+    --background-color-overlay: #00000080;
+    --background-color-toast-success: #14532d;
+    --background-color-toast-error: #561000;
+    --background-color-toast-warning: #663c00;
+    --background-color-toast-info: #1e3a8a;
+
+    /* Text Colors */
+    --text-color-primary: var(--colors-black);
+    --text-color-secondary: var(--colors-zinc-700);
+    --text-color-success: var(--colors-green-800);
+    --text-color-error: var(--colors-red-800);
+    --text-color-button: var(--colors-zinc-200);
+    --text-color-link: var(--colors-blue-600);
+    --text-color-highlight: var(--colors-green-700);
+
+    /* Border Colors */
+    --border-color-primary: var(--colors-zinc-300);
+    --border-color-secondary: var(--colors-zinc-400);
+
+    /* Ring Colors */
+    --ring-color-primary: var(--colors-zinc-400);
+    --ring-color-error: var(--colors-red-400);
+
+    /* Icon Colors */
+    --icon-color-primary: var(--colors-zinc-900);
+    --icon-color-muted: var(--colors-zinc-500);
+    --icon-color-active: var(--colors-blue-500);
+    --icon-color-success: var(--colors-green-600);
+    --icon-color-error: var(--colors-red-600);
+
+    /* Gradient */
+    --background-image-gradient-header: linear-gradient(0deg, var(--colors-zinc-100) 0%, var(--colors-zinc-200) 100%);
+    --background-image-gradient-footer: linear-gradient(0deg, var(--colors-zinc-100) 0%, var(--colors-zinc-200) 100%);
+    --background-image-gradient-button: linear-gradient(90deg, var(--colors-purple-500) 0%, var(--colors-violet-500) 100%);
+    --background-image-gradient-button-hover: linear-gradient(90deg, var(--colors-purple-400) 0%, var(--colors-violet-400) 100%);
+    --border-image-gradient-main: linear-gradient(to bottom, var(--colors-zinc-300), transparent);
+
+    /* Scrollbar */
+    --scrollbar-thumb-color: var(--colors-zinc-400);
+    --scrollbar-track-color: var(--colors-zinc-300);
+
+    /* Primitive Colors ******************************************************/
+    /*************************************************************************/
+    --colors-black: #000000;
+    --colors-white: #FFFFFF;
+    --colors-blue-50: #E6F1FE;
+    --colors-blue-100: #CCE3FD;
+    --colors-blue-200: #99C7FB;
+    --colors-blue-300: #66AAF9;
+    --colors-blue-400: #338EF7;
+    --colors-blue-500: #006FEE;
+    --colors-blue-600: #005BC4;
+    --colors-blue-700: #004493;
+    --colors-blue-800: #002E62;
+    --colors-blue-900: #001731;
+    --colors-cyan-50: #F0FCFF;
+    --colors-cyan-100: #E6FAFE;
+    --colors-cyan-200: #D7F8FE;
+    --colors-cyan-300: #C3F4FD;
+    --colors-cyan-400: #A5EEFD;
+    --colors-cyan-500: #7EE7FC;
+    --colors-cyan-600: #06B7DB;
+    --colors-cyan-700: #09AACD;
+    --colors-cyan-800: #0E8AAA;
+    --colors-cyan-900: #053B48;
+    --colors-green-50: #E8FAF0;
+    --colors-green-100: #D1F4E0;
+    --colors-green-200: #A2E9C1;
+    --colors-green-300: #74DFA2;
+    --colors-green-400: #45D483;
+    --colors-green-500: #17C964;
+    --colors-green-600: #12A150;
+    --colors-green-700: #0E793C;
+    --colors-green-800: #095028;
+    --colors-green-900: #052814;
+    --colors-pink-50: #FFEDFA;
+    --colors-pink-100: #FFDCF5;
+    --colors-pink-200: #FFB8EB;
+    --colors-pink-300: #FF95E1;
+    --colors-pink-400: #FF71D7;
+    --colors-pink-500: #FF4ECD;
+    --colors-pink-600: #CC3EA4;
+    --colors-pink-700: #992F7B;
+    --colors-pink-800: #661F52;
+    --colors-pink-900: #331029;
+    --colors-purple-50: #F2EAFA;
+    --colors-purple-100: #E4D4F4;
+    --colors-purple-200: #C9A9E9;
+    --colors-purple-300: #AE7EDE;
+    --colors-purple-400: #9353D3;
+    --colors-purple-500: #7828C8;
+    --colors-purple-600: #6020A0;
+    --colors-purple-700: #481878;
+    --colors-purple-800: #301050;
+    --colors-purple-900: #180828;
+    --colors-red-50: #FEF2F2;
+    --colors-red-100: #FEE2E2;
+    --colors-red-200: #FECACA;
+    --colors-red-300: #FCA5A5;
+    --colors-red-400: #F87171;
+    --colors-red-500: #EF4444;
+    --colors-red-600: #DC2626;
+    --colors-red-700: #B91C1C;
+    --colors-red-800: #991B1B;
+    --colors-red-900: #7F1D1D;
+    --colors-violet-50: #E8E6FF;
+    --colors-violet-100: #C6C1FF;
+    --colors-violet-200: #A39AFF;
+    --colors-violet-300: #8073FA;
+    --colors-violet-400: #695DE1;
+    --colors-violet-500: #584EB5;
+    --colors-violet-600: #493F9A;
+    --colors-violet-700: #3B3180;
+    --colors-violet-800: #2C2466;
+    --colors-violet-900: #1E184D;
+    --colors-yellow-50: #FEFCE8;
+    --colors-yellow-100: #FDEDD3;
+    --colors-yellow-200: #FBDBA7;
+    --colors-yellow-300: #F9C97C;
+    --colors-yellow-400: #F7B750;
+    --colors-yellow-500: #F5A524;
+    --colors-yellow-600: #C4841D;
+    --colors-yellow-700: #936316;
+    --colors-yellow-800: #62420E;
+    --colors-yellow-900: #312107;
+    --colors-zinc-50: #FAFAFA;
+    --colors-zinc-100: #F4F4F5;
+    --colors-zinc-200: #E4E4E7;
+    --colors-zinc-300: #D4D4D8;
+    --colors-zinc-400: #A1A1AA;
+    --colors-zinc-500: #71717A;
+    --colors-zinc-600: #52525B;
+    --colors-zinc-700: #3F3F46;
+    --colors-zinc-750: #303036;
+    --colors-zinc-800: #27272A;
+    --colors-zinc-840: #222225;
+    --colors-zinc-880: #1D1D20;
+    --colors-zinc-900: #18181B;
+}
+
+@layer base {
+    @variant dark {
+        /* Dark Theme Overrides **************************************************/
+        /*************************************************************************/
+
+        /* Background Colors */
+        --background-color-primary: var(--colors-zinc-880);
+        --background-color-secondary: var(--colors-zinc-840);
+        --background-color-tertiary: var(--colors-zinc-750);
+        --background-color-quaternary: var(--colors-zinc-700);
+        --background-color-success: var(--colors-green-800);
+        --background-color-error: var(--colors-red-800);
+        --background-color-button-primary: var(--colors-blue-600);
+        --background-color-button-secondary: var(--colors-blue-600);
+        --background-color-button-icon: var(--colors-blue-600);
+        --background-color-select: var(--background-color-quaternary);
+        --background-color-overlay: #00000080;
+        --background-color-toast-success: #14532d;
+        --background-color-toast-error: #561000;
+        --background-color-toast-warning: #663c00;
+        --background-color-toast-info: #1e3a8a;
+
+        /* Text Colors */
+        --text-color-primary: var(--colors-white);
+        --text-color-secondary: var(--colors-zinc-400);
+        --text-color-success: var(--colors-green-100);
+        --text-color-error: var(--colors-red-200);
+        --text-color-button: var(--text-color-primary);
+        --text-color-link: var(--colors-blue-200);
+        --text-color-highlight: var(--colors-green-200);
+
+        /* Border Colors */
+        --border-color-primary: var(--colors-zinc-700);
+        --border-color-secondary: var(--colors-zinc-500);
+
+        /* Ring Colors */
+        --ring-color-primary: var(--colors-zinc-500);
+        --ring-color-error: var(--colors-red-300);
+
+        /* Icon Colors */
+        --icon-color-primary: var(--colors-zinc-200);
+        --icon-color-muted: var(--colors-zinc-400);
+        --icon-color-active: var(--colors-blue-200);
+        --icon-color-success: var(--colors-green-200);
+        --icon-color-error: var(--colors-red-200);
+
+        /* Gradient */
+        --background-image-gradient-header: linear-gradient(0deg, var(--colors-zinc-880) 0%, var(--colors-zinc-750) 100%);
+        --background-image-gradient-footer: linear-gradient(0deg, var(--colors-zinc-880) 0%, var(--colors-zinc-750) 100%);
+        --background-image-gradient-button: linear-gradient(90deg, var(--colors-purple-500) 0%, var(--colors-violet-500) 100%);
+        --background-image-gradient-button-hover: linear-gradient(90deg, var(--colors-purple-400) 0%, var(--colors-violet-400) 100%);
+        --border-image-gradient-main: linear-gradient(to bottom, var(--colors-zinc-700), transparent);
+
+        /* Scrollbar */
+        --scrollbar-thumb-color: var(--colors-zinc-600);
+        --scrollbar-track-color: var(--colors-zinc-700);
+    }
+}

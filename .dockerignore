@@ -1,0 +1,16 @@
+# Node/SvelteKit artifacts
+node_modules
+.svelte-kit
+build/
+.env
+.env.*
+!.env.example
+
+# Git / OS
+.git
+.gitignore
+.DS_Store
+
+# Docker
+.dockerignore
+Dockerfile

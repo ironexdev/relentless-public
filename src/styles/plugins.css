@@ -1,0 +1,120 @@
+/* Effects & Appearance ****************************************************/
+/***************************************************************************/
+@utility text-shadow {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+@utility text-shadow-lg {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@utility text-shadow-none {
+    text-shadow: none;
+}
+
+/* Custom Button Utilities *************************************************/
+/***************************************************************************/
+@utility shadow-button {
+    box-shadow: 0 0 20px 0 var(--colors-violet-500);
+}
+
+/* Layout Utilities ********************************************************/
+/***************************************************************************/
+@utility header-based-h {
+    height: 60px;
+    @media (min-height: 640px) {
+        height: 80px;
+    }
+}
+
+@utility header-based-pt {
+    padding-top: 60px;
+    @media (min-height: 640px) {
+        padding-top: 80px;
+    }
+}
+
+@utility header-based-top {
+    top: 60px;
+    @media (min-height: 640px) {
+        top: 80px;
+    }
+}
+
+@utility footer-based-h {
+    height: 60px;
+    @media (min-height: 640px) {
+        height: 80px;
+    }
+}
+
+@utility footer-based-pb {
+    padding-bottom: 60px;
+    @media (min-height: 640px) {
+        padding-bottom: 80px;
+    }
+}
+
+@utility footer-based-bottom {
+    bottom: 60px;
+    @media (min-height: 640px) {
+        bottom: 80px;
+    }
+}
+
+/* Border Fade */
+@utility border-fade-t-both-primary {
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    border-image-source: linear-gradient(
+            to top,
+            transparent,
+            var(--border-color-primary),
+            transparent
+    );
+    border-image-slice: 1;
+}
+
+@utility border-fade-r-both-primary {
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    border-image-source: linear-gradient(
+            to bottom,
+            transparent,
+            var(--border-color-primary),
+            transparent
+    );
+    border-image-slice: 1;
+}
+
+@utility border-fade-l-both-primary {
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    border-image-source: linear-gradient(
+            to bottom,
+            transparent,
+            var(--border-color-primary),
+            transparent
+    );
+    border-image-slice: 1;
+}
+
+/* Ripple Animation **********************************************************/
+/*****************************************************************************/
+@keyframes keyframe-ripple {
+    to {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+@layer components {
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0);
+        animation: keyframe-ripple 600ms ease-out;
+    }
+}

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+bin/docker/dev/run-db
+
+pnpm i
+
+pnpm db:push
+
+pnpm dev

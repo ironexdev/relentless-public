@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ -f .env ]; then
+  set -a # Automatically export all variables
+  # Use sed to remove Windows line endings (\r) before sourcing
+  eval "$(sed 's/\r$//' .env)"
+  set +a # Stop automatically exporting
+else
+  echo ".env file not found."
+  exit 1
+fi
+
+docker pull postgres:18
+
+docker run -d \
+  --name $DATABASE_HOST \
+  -p $DATABASE_PORT:5432 \
+  -e POSTGRES_DB=$DATABASE_NAME \
+  -e POSTGRES_USER=$DATABASE_USER \
+  -e POSTGRES_PASSWORD=$DATABASE_PASSWORD \
+  -v relentless-database:/var/lib/postgresql/data \
+  postgres:18

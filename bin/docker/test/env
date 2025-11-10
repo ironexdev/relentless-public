@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# App
+export APP_ENV=test
+export PORT=80
+
+# Database
+export DATABASE_NAME="relentless"
+export DATABASE_USER="dbuser"
+export DATABASE_PORT=5432
+export DATABASE_HOST="db"
+export DATABASE_SSL=false
+
+echo "✓ Test environment variables set."
+
+. bin/docker/test/env.secret

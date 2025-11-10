@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+echo "App Entrypoint (Test)"
+
+if [ "$1" = 'node' ]; then
+    echo "Waiting for database to be ready at $DATABASE_HOST:$DATABASE_PORT"
+
+    # Use netcat to check if the database port is open
+    while ! nc -z "$DATABASE_HOST" "$DATABASE_PORT"; do
+      sleep 1
+    done
+
+    echo "Database is ready!"
+    echo "Running database migrations..."
+    pnpm db:migrate
+fi
+
+exec "$@"

@@ -1,0 +1,21 @@
+import { type InferInsertModel, sql } from 'drizzle-orm';
+import { pgTable, timestamp, varchar } from 'drizzle-orm/pg-core';
+import type { InferSelectModel } from 'drizzle-orm/table';
+import crypto from 'crypto';
+
+export const users = pgTable('users', {
+	id: varchar('id', { length: 255 })
+		.notNull()
+		.primaryKey()
+		.$defaultFn(() => crypto.randomUUID()),
+	email: varchar('email', { length: 255 }).notNull().unique(),
+	emailVerified: timestamp('email_verified', {
+		mode: 'date',
+		precision: 3
+	}).default(sql`CURRENT_TIMESTAMP(3)`),
+	createdAt: timestamp('created_at').notNull().defaultNow(),
+	updatedAt: timestamp('updated_at').$onUpdate(() => new Date())
+});
+
+export type SelectUserType = InferSelectModel<typeof users>;
+export type InsertUserType = InferInsertModel<typeof users>;

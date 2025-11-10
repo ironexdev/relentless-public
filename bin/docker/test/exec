@@ -1,0 +1,10 @@
+#!/bin/sh
+
+. bin/docker/test/env
+
+set -e
+
+echo "🚀 Executing command in test app container"
+
+# Launch the stack
+docker compose -f compose.test.yml exec -T app "$@"

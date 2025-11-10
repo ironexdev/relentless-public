@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+echo "App Entrypoint (Production)"
+
+if [ "$1" = 'node' ]; then
+    echo "Image built for production - starting production server"
+fi
+
+exec "$@"
