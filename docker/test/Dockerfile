@@ -4,6 +4,8 @@ WORKDIR /app
 
 RUN corepack enable pnpm
 
+RUN corepack prepare pnpm@10.20 --activate
+
 # Dependencies
 FROM base AS dependencies
 

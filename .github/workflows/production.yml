@@ -1,4 +1,4 @@
-name: Test, Build, Push, and Deploy
+name: Test, Build, Push, and Deploy to Production
 
 on:
   push:
@@ -44,6 +44,18 @@ jobs:
     permissions:
       contents: read
       packages: write
+    env:
+      APP_ENV: production
+      PORT: 3000
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+      DATABASE_PORT: 5432
+      DATABASE_NAME: "relentless"
+      DATABASE_USER: "dbuser"
+      DATABASE_SSL: "true"
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      IMAGE_TAG: ${{ github.sha }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5.0.0
@@ -66,24 +78,21 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
             ${{ env.IMAGE_NAME }}:latest
           build-args: |
-            APP_ENV=${{ vars.APP_ENV }}
-            PORT=${{ vars.PORT }}
+            APP_ENV=${{ env.APP_ENV }}
+            PORT=${{ env.PORT }}
 
-      - name: Deploy to CapRover
-        uses: caprover/deploy-from-github@v1.2.0
-        env:
-          APP_ENV: ${{ vars.APP_ENV }}
-          PORT: ${{ vars.PORT }}
-          DATABASE_HOST: ${{ vars.DATABASE_HOST }}
-          DATABASE_PORT: ${{ vars.DATABASE_PORT }}
-          DATABASE_NAME: ${{ vars.DATABASE_NAME }}
-          DATABASE_USER: ${{ vars.DATABASE_USER }}
-          DATABASE_SSL: ${{ vars.DATABASE_SSL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-        with:
-          server: ${{ vars.CAPROVER_HOST }}
-          app: ${{ vars.CAPROVER_APP_NAME }}
-          token: ${{ secrets.CAPROVER_APP_TOKEN }}
-          image: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+      - name: Set up SSH Key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Create Docker Context
+        run: |
+          docker context create swarm-manager --docker "host=ssh://${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}"
+          docker context use swarm-manager
+
+      - name: Deploy to Swarm
+        run: |
+          docker --with-registry-auth compose -f compose.production.yml up -d
