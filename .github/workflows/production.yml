@@ -93,6 +93,10 @@ jobs:
           docker context create swarm-manager --docker "host=ssh://${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}"
           docker context use swarm-manager
 
+      - name: Log in to GHCR on Swarm Manager
+        run: |
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
       - name: Deploy to Swarm
         run: |
-          docker compose --with-registry-auth -f compose.production.yml up -d
+          docker compose -f compose.production.yml up -d
