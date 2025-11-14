@@ -13,7 +13,8 @@ export default defineConfig({
 		port: Number(env.DATABASE_PORT),
 		user: env.DATABASE_USER,
 		password: env.DATABASE_PASSWORD,
-		database: env.DATABASE_NAME
+		database: env.DATABASE_NAME,
+		ssl: env.DATABASE_SSL === 'true' ? true : (env.DATABASE_SSL === 'false' ? false : env.DATABASE_SSL)
 	},
 	verbose: true,
 	strict: true

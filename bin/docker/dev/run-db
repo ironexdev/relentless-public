@@ -18,5 +18,5 @@ docker run -d \
   -e POSTGRES_DB=$DATABASE_NAME \
   -e POSTGRES_USER=$DATABASE_USER \
   -e POSTGRES_PASSWORD=$DATABASE_PASSWORD \
-  -v relentless-database:/var/lib/postgresql/data \
+  -v relentless-database:/var/lib/postgresql \
   postgres:18

@@ -1,5 +1,5 @@
 {
-	"name": "my-app",
+	"name": "relentless",
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
@@ -12,12 +12,11 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"test:e2e": "playwright test",
-		"test": "npm run test:e2e",
-		"db:push": "drizzle-kit push",
-		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"test": "playwright test",
+		"db:push": "tsx node_modules/drizzle-kit/bin.cjs push",
+		"db:generate": "tsx node_modules/drizzle-kit/bin.cjs generate",
+		"db:migrate": "tsx node_modules/drizzle-kit/bin.cjs migrate",
+		"db:studio": "tsx node_modules/drizzle-kit/bin.cjs studio"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.1",
@@ -43,6 +42,7 @@
 		"svelte": "^5.43.6",
 		"svelte-check": "^4.3.4",
 		"tailwindcss": "^4.1.17",
+		"tsx": "^4.20.6",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.4",
 		"vite": "^7.2.2"
