@@ -95,4 +95,4 @@ jobs:
 
       - name: Deploy to Swarm
         run: |
-          docker --with-registry-auth compose -f compose.production.yml up -d
+          docker compose --with-registry-auth -f compose.production.yml up -d
