@@ -17,8 +17,9 @@ RUN pnpm install --frozen-lockfile
 FROM base AS builder
 
 COPY --from=dependencies /app/node_modules ./node_modules
-COPY --from=dependencies /app/.svelte-kit ./.svelte-kit
 COPY . .
+
+RUN pnpm prepare
 
 RUN pnpm build
 
