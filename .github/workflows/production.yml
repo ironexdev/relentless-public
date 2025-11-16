@@ -87,4 +87,4 @@ jobs:
 
       - name: Deploy to Swarm
         run: |
-          docker compose -f compose.production.yml up -d
+          docker stack deploy -c compose.production.yml relentless
