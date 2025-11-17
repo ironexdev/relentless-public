@@ -12,6 +12,8 @@ services:
       DATABASE_SSL: ${DATABASE_SSL}
       JWT_SECRET: ${JWT_SECRET}
       RESEND_API_KEY: ${RESEND_API_KEY}
+    ports:
+      - "${PORT}:${PORT}"
     networks:
       - default
     deploy:
