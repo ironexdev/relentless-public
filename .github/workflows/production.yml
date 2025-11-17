@@ -68,7 +68,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        id: build-and-push-app
         uses: docker/build-push-action@v6.18.0
         with:
           context: .
@@ -81,18 +80,24 @@ jobs:
             APP_ENV=${{ env.APP_ENV }}
             PORT=${{ env.PORT }}
 
-      - name: Log in to GHCR on Swarm Manager
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Remove orphaned network from previous failed deploy
+      - name: Add Manager to Known Hosts
         run: |
-          docker network rm relentless_default || true
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ vars.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Remove previous stack
+      - name: Create Remote Docker Context
         run: |
-          docker stack rm relentless || true
+          docker context create remote --docker "host=ssh://${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}"
 
       - name: Deploy to Swarm
         run: |
-          docker stack deploy -c compose.production.yml relentless
+          docker --context remote stack deploy --with-registry-auth -c compose.production.yml relentless
+
+      - name: Prune Remote System
+        run: |
+          docker --context remote system prune -af --volumes || true
