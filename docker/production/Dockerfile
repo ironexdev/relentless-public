@@ -42,6 +42,8 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=dependencies /app/package.json ./package.json
 
 COPY --from=builder /app/build ./build
+COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
+COPY --from=builder /app/drizzle ./drizzle
 
 COPY docker/production/app-entrypoint ./app-entrypoint
 RUN chmod +x ./app-entrypoint
