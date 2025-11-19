@@ -92,6 +92,7 @@ jobs:
 
       - name: Create Remote Docker Context
         run: |
+          docker context rm remote --force 2> /dev/null || true
           docker context create remote --docker "host=ssh://${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}"
 
       - name: Deploy to Swarm
