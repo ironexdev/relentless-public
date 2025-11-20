@@ -1,11 +1,9 @@
 import { EnvironmentEnum } from "$lib/enums/environment-enum";
-import { NODE_ENV } from '$env/dynamic/private';
+import { env } from '$env/dynamic/private';
 import pino from 'pino';
 
-const env = NODE_ENV;
-
 export const logger = pino({
-  level: env !== EnvironmentEnum.PRODUCTION ? 'debug' : 'info',
+  level: env.NODE_ENV !== EnvironmentEnum.PRODUCTION ? 'debug' : 'info',
 
   // Use ISO time string instead of epoch (for JSON)
   timestamp: pino.stdTimeFunctions.isoTime,
@@ -13,11 +11,11 @@ export const logger = pino({
   // Remove default 'pid' and 'hostname' fields (for JSON)
   base: undefined,
 
-  redact: env === EnvironmentEnum.PRODUCTION
+  redact: env.NODE_ENV === EnvironmentEnum.PRODUCTION
     ? ['req.headers.authorization', 'req.headers.cookie', 'password', 'token']
     : undefined,
 
-  transport: env !== EnvironmentEnum.PRODUCTION
+  transport: env.NODE_ENV !== EnvironmentEnum.PRODUCTION
     ? {
       target: 'pino-pretty',
       options: {
