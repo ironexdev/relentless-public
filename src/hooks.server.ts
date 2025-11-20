@@ -4,7 +4,7 @@ import {
 	TOAST_COOKIE_NAME
 } from '$lib/config';
 import { defaultLocale, locales } from '$lib/i18n';
-import { redirect, type Handle, type RequestEvent, error } from '@sveltejs/kit';
+import { redirect, type Handle, type RequestEvent, error, type HandleServerError } from '@sveltejs/kit';
 import { LocaleEnum } from '$lib/enums/locale-enum';
 import jwt from 'jsonwebtoken';
 import { env } from '$env/dynamic/private';
@@ -14,6 +14,7 @@ import { refreshTokens } from '$lib/server/database/schema/refresh-tokens';
 import { AuthService } from '$lib/server/services/auth-service';
 import { CookieService } from '$lib/server/services/cookie-service';
 import { getLocalizedUrl, routes } from '$lib/routes';
+import { logger } from '$lib/server/logger';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	handleLang(event);
@@ -31,6 +32,28 @@ export const handle: Handle = async ({ event, resolve }) => {
 	return resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('%lang%', event.locals.locale ?? defaultLocale)
 	});
+};
+
+export const handleError: HandleServerError = ({ error, event }) => {
+	const errorId = crypto.randomUUID();
+
+	logger.error({
+		err: error,
+		errorId,
+		event: {
+			url: event.url.pathname,
+			method: event.request.method
+		}
+	}, 'Unhandled Server Error');
+
+	if (error instanceof Error && error.cause) {
+		logger.error({ cause: error.cause }, 'Error Cause');
+	}
+
+	return {
+		message: 'Internal Server Error',
+		errorId
+	};
 };
 
 function handleLang(event: RequestEvent) {

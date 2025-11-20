@@ -10,6 +10,13 @@ const globalForDb = globalThis as unknown as {
 	conn: Pool | null;
 };
 
+const getSSLConfig = () => {
+	if (env.DATABASE_SSL === 'true' || env.DATABASE_SSL === 'require') {
+		return { rejectUnauthorized: false };
+	}
+	return false;
+};
+
 const conn =
 	globalForDb.conn ??
 	new Pool({
@@ -18,7 +25,8 @@ const conn =
 		user: env.DATABASE_USER,
 		password: env.DATABASE_PASSWORD,
 		database: env.DATABASE_NAME,
-		max: 20
+		ssl: getSSLConfig(),
+		max: Number(env.DATABASE_MAX_CONNECTIONS)
 	});
 
 if (env.NODE_ENV !== 'production') globalForDb.conn = conn;

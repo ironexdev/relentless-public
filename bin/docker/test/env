@@ -10,6 +10,7 @@ export DATABASE_USER="dbuser"
 export DATABASE_PORT=5432
 export DATABASE_HOST="db"
 export DATABASE_SSL=false
+export DATABASE_MAX_CONNECTIONS=6
 
 echo "✓ Test environment variables set."
 

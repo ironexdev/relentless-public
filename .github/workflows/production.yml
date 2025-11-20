@@ -20,6 +20,7 @@ jobs:
       DATABASE_PORT: ${{ vars.DATABASE_PORT }}
       DATABASE_HOST: ${{ vars.DATABASE_HOST }}
       DATABASE_SSL: ${{ vars.DATABASE_SSL }}
+      DATABASE_MAX_CONNECTIONS: ${{ vars.DATABASE_MAX_CONNECTIONS }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -52,6 +53,7 @@ jobs:
       DATABASE_NAME: ${{ vars.DATABASE_NAME }}
       DATABASE_USER: ${{ vars.DATABASE_USER }}
       DATABASE_SSL: ${{ vars.DATABASE_SSL }}
+      DATABASE_MAX_CONNECTIONS: ${{ vars.DATABASE_MAX_CONNECTIONS }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}

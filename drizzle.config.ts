@@ -5,6 +5,13 @@ if (!env.DATABASE_HOST || !env.DATABASE_PORT || !env.DATABASE_USER || !env.DATAB
 	throw new Error('DATABASE environment variables are not set');
 }
 
+const getSSLConfig = () => {
+	if (env.DATABASE_SSL === 'true' || env.DATABASE_SSL === 'require') {
+		return { rejectUnauthorized: false };
+	}
+	return false;
+};
+
 export default defineConfig({
 	schema: './src/lib/server/database/schema/index.ts',
 	dialect: 'postgresql',
@@ -14,7 +21,8 @@ export default defineConfig({
 		user: env.DATABASE_USER,
 		password: env.DATABASE_PASSWORD,
 		database: env.DATABASE_NAME,
-		ssl: env.DATABASE_SSL === 'true' ? true : (env.DATABASE_SSL === 'false' ? false : env.DATABASE_SSL)
+		ssl: getSSLConfig(),
+		max: env.DATABASE_MAX_CONNECTIONS
 	},
 	verbose: true,
 	strict: true
