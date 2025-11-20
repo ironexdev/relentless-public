@@ -1,14 +1,14 @@
 #!/bin/sh
 
 # App
-export APP_ENV=test
+export NODE_ENV=test
 export PORT=80
 
 # Database
-export DATABASE_NAME="relentless"
-export DATABASE_USER="dbuser"
-export DATABASE_PORT=5432
 export DATABASE_HOST="db"
+export DATABASE_PORT=5432
+export DATABASE_NAME="app_db"
+export DATABASE_USER="app_user"
 export DATABASE_SSL=false
 export DATABASE_MAX_CONNECTIONS=6
 

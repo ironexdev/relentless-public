@@ -17,6 +17,9 @@ import { getLocalizedUrl, routes } from '$lib/routes';
 import { logger } from '$lib/server/logger';
 
 export const handle: Handle = async ({ event, resolve }) => {
+	const start = performance.now();
+	const ip = event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
+
 	handleLang(event);
 	handleToast(event);
 	await handleAuth(event);
@@ -26,21 +29,47 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (routeConfig && routeConfig.protected && !event.locals.user) {
 		const redirectUrl = getLocalizedUrl(event.locals.locale, '/login');
 
+		logger.info({
+			type: 'access',
+			ip,
+			method: event.request.method,
+			url: event.url.pathname,
+			status: 303,
+			duration: `${Math.round(performance.now() - start)}ms`
+		}, 'Redirecting unauthenticated user');
+
 		return redirect(303, redirectUrl);
 	}
 
-	return resolve(event, {
+	const response = await resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('%lang%', event.locals.locale ?? defaultLocale)
 	});
+
+	const isHealthCheck = event.url.pathname === '/livez' || event.url.pathname === '/readyz';
+
+	if (!isHealthCheck || response.status >= 400) {
+		logger.info({
+			type: 'access',
+			ip,
+			method: event.request.method,
+			url: event.url.pathname,
+			status: response.status,
+			duration: `${Math.round(performance.now() - start)}ms`
+		}, `${event.request.method} ${event.url.pathname}`);
+	}
+
+	return response;
 };
 
 export const handleError: HandleServerError = ({ error, event }) => {
 	const errorId = crypto.randomUUID();
+	const ip = event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
 
 	logger.error({
 		err: error,
 		errorId,
 		event: {
+			ip,
 			url: event.url.pathname,
 			method: event.request.method
 		}

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+echo "🚀 Resetting project"
+
+# Calling cleanup on purpose, first run doesn't clean everything when using --force
+bin/docker/cleanup "$@"
+bin/docker/cleanup "$@"
+bin/docker/test/up
+
+echo "✨ Project reset successfully!"

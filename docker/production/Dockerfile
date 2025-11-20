@@ -26,10 +26,10 @@ RUN pnpm build
 # Production
 FROM base AS production
 
-ARG APP_ENV
+ARG NODE_ENV
 ARG PORT
 
-ENV NODE_ENV=${APP_ENV}
+ENV NODE_ENV=${NODE_ENV}
 ENV PORT=${PORT}
 
 RUN apt-get update && apt-get install -y --no-install-recommends netcat-openbsd curl && rm -rf /var/lib/apt/lists/*

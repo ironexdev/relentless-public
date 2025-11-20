@@ -2,7 +2,7 @@ services:
   app:
     image: ${IMAGE_NAME}:${IMAGE_TAG}
     environment:
-      APP_ENV: ${APP_ENV}
+      NODE_ENV: ${NODE_ENV}
       PORT: ${PORT}
       DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}
