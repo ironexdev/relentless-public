@@ -1,5 +1,5 @@
 import { EnvironmentEnum } from "$lib/enums/environment-enum";
-import { NODE_ENV } from '$env/static/private';
+import { NODE_ENV } from '$env/dynamic/private';
 import pino from 'pino';
 
 const env = NODE_ENV;
