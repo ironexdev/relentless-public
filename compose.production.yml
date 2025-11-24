@@ -30,6 +30,28 @@ services:
       restart_policy:
         condition: on-failure
 
+  dozzle:
+    image: amir20/dozzle:v8.14
+    environment:
+      DOZZLE_USERNAME: ${DOZZLE_USERNAME}
+      DOZZLE_PASSWORD: ${DOZZLE_PASSWORD}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8888:8080"
+    networks:
+      - default
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: 50M
+
 networks:
   default:
     driver: overlay

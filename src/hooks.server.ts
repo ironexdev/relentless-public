@@ -4,7 +4,7 @@ import {
 	TOAST_COOKIE_NAME
 } from '$lib/config';
 import { defaultLocale, locales } from '$lib/i18n';
-import { redirect, type Handle, type RequestEvent, error, type HandleServerError } from '@sveltejs/kit';
+import { redirect, type Handle, type RequestEvent, error, type HandleServerError, isHttpError } from '@sveltejs/kit';
 import { LocaleEnum } from '$lib/enums/locale-enum';
 import jwt from 'jsonwebtoken';
 import { env } from '$env/dynamic/private';
@@ -15,6 +15,7 @@ import { AuthService } from '$lib/server/services/auth-service';
 import { CookieService } from '$lib/server/services/cookie-service';
 import { getLocalizedUrl, routes } from '$lib/routes';
 import { logger } from '$lib/server/logger';
+import { EnvironmentEnum } from '$lib/enums/environment-enum';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const start = performance.now();
@@ -64,23 +65,36 @@ export const handle: Handle = async ({ event, resolve }) => {
 export const handleError: HandleServerError = ({ error, event }) => {
 	const errorId = crypto.randomUUID();
 	const ip = event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
+	const status = isHttpError(error) ? error.status : 500;
 
-	logger.error({
-		err: error,
-		errorId,
-		event: {
+	// Determine if full error message should be shown to client
+	// Always show for 4xx (client errors)
+	// Show for 5xx only if NOT in production (for debugging)
+	const isSafeToExpose = status < 500 || env.NODE_ENV !== EnvironmentEnum.PRODUCTION;
+
+	const message = (isSafeToExpose && isHttpError(error))
+		? error.body.message
+		: (isSafeToExpose && error instanceof Error ? error.message : 'Internal Server Error');
+
+	if (status !== 404) {
+		// Pino handles redaction here automatically based on logger.ts config
+		logger.error({
+			type: 'error',
 			ip,
+			method: event.request.method,
 			url: event.url.pathname,
-			method: event.request.method
-		}
-	}, 'Unhandled Server Error');
+			status,
+			err: error,
+			errorId
+		}, 'Unhandled Server Error');
 
-	if (error instanceof Error && error.cause) {
-		logger.error({ cause: error.cause }, 'Error Cause');
+		if (error instanceof Error && error.cause) {
+			logger.error({ cause: error.cause }, 'Error Cause');
+		}
 	}
 
 	return {
-		message: 'Internal Server Error',
+		message,
 		errorId
 	};
 };
