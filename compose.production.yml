@@ -38,8 +38,8 @@ services:
   dozzle:
     image: amir20/dozzle:v8.14
     environment:
+      DOZZLE_AUTH_PROVIDER: simple
       DOZZLE_MODE: swarm
-      DOZZLE_AUTH_FILE: /run/secrets/dozzle_users
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
@@ -47,18 +47,15 @@ services:
     networks:
       - default
     secrets:
-      - dozzle_users
+      - source: dozzle_users
+        target: /data/users.yml
     healthcheck:
       test: ["CMD", "/dozzle", "healthcheck"]
       interval: 30s
       timeout: 5s
       retries: 3
     deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
+      mode: global
       resources:
         limits:
           cpus: "0.10"
