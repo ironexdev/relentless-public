@@ -58,8 +58,6 @@ jobs:
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
       IMAGE_TAG: ${{ github.sha }}
-      DOZZLE_USERNAME: ${{ vars.DOZZLE_USERNAME }}
-      DOZZLE_PASSWORD: ${{ secrets.DOZZLE_PASSWORD }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5.0.0
