@@ -1,10 +1,17 @@
+import { sequence } from '@sveltejs/kit/hooks';
 import {
 	ACCESS_TOKEN_COOKIE_NAME,
 	REFRESH_TOKEN_COOKIE_NAME,
 	TOAST_COOKIE_NAME
 } from '$lib/config';
 import { defaultLocale, locales } from '$lib/i18n';
-import { redirect, type Handle, type RequestEvent, error, type HandleServerError, isHttpError } from '@sveltejs/kit';
+import {
+	redirect,
+	type Handle,
+	type RequestEvent,
+	type HandleServerError,
+	isHttpError
+} from '@sveltejs/kit';
 import { LocaleEnum } from '$lib/enums/locale-enum';
 import jwt from 'jsonwebtoken';
 import { env } from '$env/dynamic/private';
@@ -17,9 +24,10 @@ import { getLocalizedUrl, routes } from '$lib/routes';
 import { logger } from '$lib/server/logger';
 import { EnvironmentEnum } from '$lib/enums/environment-enum';
 
-export const handle: Handle = async ({ event, resolve }) => {
+export const handle: Handle = sequence(async ({ event, resolve }) => {
 	const start = performance.now();
-	const ip = event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
+	const ip =
+		event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
 
 	handleLang(event);
 	handleToast(event);
@@ -30,14 +38,17 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (routeConfig && routeConfig.protected && !event.locals.user) {
 		const redirectUrl = getLocalizedUrl(event.locals.locale, '/login');
 
-		logger.info({
-			type: 'access',
-			ip,
-			method: event.request.method,
-			url: event.url.pathname,
-			status: 303,
-			duration: `${Math.round(performance.now() - start)}ms`
-		}, 'Redirecting unauthenticated user');
+		logger.info(
+			{
+				type: 'access',
+				ip,
+				method: event.request.method,
+				url: event.url.pathname,
+				status: 303,
+				duration: `${Math.round(performance.now() - start)}ms`
+			},
+			'Redirecting unauthenticated user'
+		);
 
 		return redirect(303, redirectUrl);
 	}
@@ -49,22 +60,26 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const isHealthCheck = event.url.pathname === '/livez' || event.url.pathname === '/readyz';
 
 	if (!isHealthCheck || response.status >= 400) {
-		logger.info({
-			type: 'access',
-			ip,
-			method: event.request.method,
-			url: event.url.pathname,
-			status: response.status,
-			duration: `${Math.round(performance.now() - start)}ms`
-		}, `${event.request.method} ${event.url.pathname}`);
+		logger.info(
+			{
+				type: 'access',
+				ip,
+				method: event.request.method,
+				url: event.url.pathname,
+				status: response.status,
+				duration: `${Math.round(performance.now() - start)}ms`
+			},
+			`${event.request.method} ${event.url.pathname}`
+		);
 	}
 
 	return response;
-};
+});
 
 export const handleError: HandleServerError = ({ error, event }) => {
 	const errorId = crypto.randomUUID();
-	const ip = event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
+	const ip =
+		event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
 	const status = isHttpError(error) ? error.status : 500;
 
 	// Determine if full error message should be shown to client
@@ -72,21 +87,27 @@ export const handleError: HandleServerError = ({ error, event }) => {
 	// Show for 5xx only if NOT in production (for debugging)
 	const isSafeToExpose = status < 500 || env.NODE_ENV !== EnvironmentEnum.PRODUCTION;
 
-	const message = (isSafeToExpose && isHttpError(error))
-		? error.body.message
-		: (isSafeToExpose && error instanceof Error ? error.message : 'Internal Server Error');
+	const message =
+		isSafeToExpose && isHttpError(error)
+			? error.body.message
+			: isSafeToExpose && error instanceof Error
+				? error.message
+				: 'Internal Server Error';
 
 	if (status !== 404) {
 		// Pino handles redaction here automatically based on logger.ts config
-		logger.error({
-			type: 'error',
-			ip,
-			method: event.request.method,
-			url: event.url.pathname,
-			status,
-			err: error,
-			errorId
-		}, 'Unhandled Server Error');
+		logger.error(
+			{
+				type: 'error',
+				ip,
+				method: event.request.method,
+				url: event.url.pathname,
+				status,
+				err: error,
+				errorId
+			},
+			'Unhandled Server Error'
+		);
 
 		if (error instanceof Error && error.cause) {
 			logger.error({ cause: error.cause }, 'Error Cause');

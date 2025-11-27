@@ -50,6 +50,7 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.553.0",
+		"@sentry/sveltekit": "^10.27.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"drizzle-orm": "^0.44.7",
