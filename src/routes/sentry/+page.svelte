@@ -1,8 +1,3 @@
-<!--
-This is just a very simple page with a button to throw an example error.
-Feel free to delete this file and the entire sentry route.
--->
-
 <script>
 	import * as Sentry from '@sentry/sveltekit';
 	import { onMount } from 'svelte';
@@ -24,7 +19,7 @@ Feel free to delete this file and the entire sentry route.
 				op: 'test'
 			},
 			async () => {
-				const res = await fetch('/sentrye');
+				const res = await fetch('/sentry');
 				if (!res.ok) {
 					hasSentError = true;
 					throw new Error('Sentry Example Frontend Error');
@@ -211,10 +206,5 @@ Feel free to delete this file and the entire sentry route.
 		border: 1px solid #a80033;
 		text-align: center;
 		margin: 0;
-	}
-
-	.connectivity-error a {
-		color: #ffffff;
-		text-decoration: underline;
 	}
 </style>
