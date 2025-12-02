@@ -23,6 +23,7 @@
 	<div class="relative mx-auto flex min-h-full w-full min-w-[320px] flex-1 flex-col">
 		<div class="flex h-[35vh] w-full items-center justify-center">
 			<h1 class="text-3xl">{t_home_title(locale)}</h1>
+			Foo Bar
 		</div>
 	</div>
 </main>
