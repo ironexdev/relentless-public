@@ -64,10 +64,10 @@ export const routes: RoutesType = {
 		lastModified: new Date(),
 		protected: true
 	},
-	'/sentry': {
+	'/debug': {
 		pathnames: {
-			[LocaleEnum.EN]: '/sentry',
-			[LocaleEnum.CS]: '/sentry'
+			[LocaleEnum.EN]: '/debug',
+			[LocaleEnum.CS]: '/debug'
 		},
 		lastModified: new Date(),
 		protected: false

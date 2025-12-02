@@ -19,7 +19,7 @@
 				op: 'test'
 			},
 			async () => {
-				const res = await fetch('/sentry');
+				const res = await fetch('/debug');
 				if (!res.ok) {
 					hasSentError = true;
 					throw new Error('Sentry Example Frontend Error');
