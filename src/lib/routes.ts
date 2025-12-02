@@ -63,6 +63,14 @@ export const routes: RoutesType = {
 		},
 		lastModified: new Date(),
 		protected: true
+	},
+	'/sentry': {
+		pathnames: {
+			[LocaleEnum.EN]: '/sentry',
+			[LocaleEnum.CS]: '/sentry'
+		},
+		lastModified: new Date(),
+		protected: false
 	}
 };
 
