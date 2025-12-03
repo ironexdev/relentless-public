@@ -91,6 +91,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ vars.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+          echo "ServerAliveInterval 60" >> ~/.ssh/config
 
       - name: Create Remote Docker Context
         run: |
@@ -99,11 +100,7 @@ jobs:
 
       - name: Deploy to Swarm
         run: |
-          docker --context remote stack deploy --with-registry-auth -c compose.production.yml relentless
-
-      - name: Verify Deployment and Force Update
-        run: |
-          docker --context remote service update --image ${{ env.IMAGE_NAME }}:${{ github.sha }} --with-registry-auth --detach=false relentless_app
+          docker --context remote stack deploy --with-registry-auth --resolve-image always -c compose.production.yml relentless
 
       - name: Prune Remote System
         run: |
