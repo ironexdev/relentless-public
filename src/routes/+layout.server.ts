@@ -1,3 +1,4 @@
+import {NODE_ENV} from "$env/static/private";
 import { routeMap } from '$lib/routes';
 import type { LayoutServerLoad } from './$types';
 
@@ -9,6 +10,7 @@ export const load: LayoutServerLoad = async ({ locals, url }) => {
 		url: url.href,
 		user: locals.user,
 		toast: locals.toast,
-		canonicalPath
+		canonicalPath,
+		env: NODE_ENV
 	};
 };
