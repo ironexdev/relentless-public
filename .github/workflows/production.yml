@@ -101,6 +101,10 @@ jobs:
         run: |
           docker --context remote stack deploy --with-registry-auth -c compose.production.yml relentless
 
+      - name: Verify Deployment and Force Update
+        run: |
+          docker --context remote service update --image ${{ env.IMAGE_NAME }}:${{ github.sha }} --with-registry-auth --detach=false relentless_app
+
       - name: Prune Remote System
         run: |
           docker --context remote system prune -af --volumes || true
