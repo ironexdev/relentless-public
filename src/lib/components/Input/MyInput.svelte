@@ -34,8 +34,8 @@
 	);
 	const finalInputClass = $derived(
 		cn(
-			'w-full h-10 sm:h-11 bg-quaternary rounded-lg outline-none transition-border duration-xs px-5 text-center',
-			error ? 'ring-2 ring-error' : 'focus:ring-2 ring-primary',
+			'w-full h-10 sm:h-11 bg-transparent border-b border-b-primary outline-none transition-border duration-xs px-5 text-center focus:bg-tertiary dark:focus:bg-secondary',
+			error ? 'border-b-error text-error' : 'focus:border-b-secondary',
 			value && 'pr-10',
 			className
 		)

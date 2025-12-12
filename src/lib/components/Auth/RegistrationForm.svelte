@@ -44,6 +44,7 @@
 		name="email"
 		type="email"
 		autocomplete="email"
+		autofocus={true}
 		placeholder={t_registration_form_email_placeholder(locale)}
 		error={response?.data?.email}
 	/>
@@ -62,7 +63,7 @@
 	<NavLink
 		title={t_registration_form_skip_button(locale)}
 		href="/verify-account"
-		class="ml-auto text-secondary hover:underline"
+		class="ml-auto text-sm text-secondary hover:underline"
 		>{t_registration_form_skip_button(locale)}</NavLink
 	>
 </form>

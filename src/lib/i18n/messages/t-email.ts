@@ -96,7 +96,7 @@ export function t_email_registration_subject(locale: LocaleType): string {
 
 export function t_email_registration_sentence1(locale: LocaleType, pin: string): string {
 	const messages = {
-		en: `Here is the requested verification PIN <b>{pin}</b>, use it to veriry your new account`,
+		en: `Here is the requested verification PIN <b>{pin}</b>, use it to verify your new account`,
 		cs: `Tady je požadovaný ověřovací PIN <b>{pin}</b>, použij ho k ověření svého nového účtu.`
 	};
 

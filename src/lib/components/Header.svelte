@@ -29,9 +29,9 @@
 			{:else}
 				<NavLink
 					href="/login"
-					class="flex items-center gap-3 rounded-full hover:bg-quaternary"
+					class="flex items-center gap-3 rounded-full hover:bg-tertiary dark:hover:bg-quaternary"
 					title={t_header_login_button(locale)}
-					activeClass="bg-quaternary"
+					activeClass="bg-tertiary dark:bg-quaternary"
 					size="sm"
 				>
 					<UserRoundCheckIcon class="size-5" />
@@ -40,8 +40,8 @@
 				<div class="mx-3 h-[40px] w-0 border-fade-t-both-primary"></div>
 				<NavLink
 					href="/create-account"
-					class="flex items-center gap-3 rounded-full hover:bg-quaternary "
-					activeClass="bg-quaternary"
+					class="flex items-center gap-3 rounded-full hover:bg-tertiary dark:hover:bg-quaternary"
+					activeClass="bg-tertiary dark:bg-quaternary"
 					title={t_header_registration_button(locale)}
 					size="sm"
 				>

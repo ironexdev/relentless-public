@@ -11,8 +11,8 @@
 					primary:
 						'bg-gradient-button hover:bg-gradient-button-hover text-button transition-all duration-xs rounded-full',
 					secondary: 'bg-button-secondary text-button rounded-full',
-					icon: 'hover:bg-quaternary duration-xs rounded-full text-secondary hover:text-primary',
-					menu: 'justify-start rounded-full w-full hover:bg-quaternary transition-all duration-xs',
+					icon: 'hover:bg-tertiary dark:hover:bg-quaternary duration-xs rounded-full text-secondary hover:text-primary',
+					menu: 'justify-start rounded-full w-full hover:bg-tertiary dark:hover:bg-quaternary transition-all duration-xs',
 					blank: ''
 				},
 				size: {

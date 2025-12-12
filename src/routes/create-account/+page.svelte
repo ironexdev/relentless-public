@@ -21,16 +21,17 @@
 </svelte:head>
 
 <Header class="ntw-header-onecol" />
-<main class="ntw-main-onecol">
+
+<main
+	class="ntw-main-onecol bg-[url(/media/wallpaper.jpg)] bg-cover bg-fixed bg-center bg-no-repeat"
+>
 	<div class="relative mx-auto flex min-h-full w-full max-w-[640px] min-w-[320px] flex-1 flex-col">
 		<div class="flex h-[35vh] w-full items-center justify-center">
-			<h1 class="w-full text-center text-3xl sm:text-4xl">
+			<h1 class="w-full text-center text-3xl text-white sm:text-4xl dark:text-primary">
 				{t_registration_title(locale)}
 			</h1>
 		</div>
-		<div
-			class="flex-1 rounded-t-[32px] border-x border-t border-primary bg-tertiary px-5 py-12 sm:px-10"
-		>
+		<div class="flex-1 bg-primary/95 px-5 py-12 sm:px-10 dark:bg-tertiary/99">
 			<RegistrationForm />
 		</div>
 	</div>

@@ -65,7 +65,7 @@
 	<NavLink
 		title={t_login_form_skip_button(locale)}
 		href="/verify-login"
-		class="ml-auto text-secondary hover:underline"
+		class="ml-auto text-secondary hover:underline text-sm"
 	>
 		{t_login_form_skip_button(locale)}
 	</NavLink>

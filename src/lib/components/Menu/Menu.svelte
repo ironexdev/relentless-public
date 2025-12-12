@@ -69,10 +69,11 @@
 	onclick={() => closeMenu()}
 	onkeydown={(e) => e.key === 'Escape' && closeMenu()}
 ></button>
+
 <menu
 	data-testid="menu"
 	class={cn(
-		'fixed top-0 bottom-0 left-0 z-menu mx-auto w-[320px] origin-left [transform:rotate3d(0,1,0,90deg)] overflow-y-auto bg-tertiary transition-transform duration-xs ease-in-out lg:w-[400px]',
+		'fixed top-0 bottom-0 left-0 z-menu mx-auto w-[320px] origin-left [transform:rotate3d(0,1,0,90deg)] overflow-y-auto bg-primary transition-transform duration-xs ease-in-out lg:w-[400px] dark:bg-tertiary',
 		menuState.isOpen && '[transform:rotate3d(0,0,0,0deg)]'
 	)}
 >
@@ -94,7 +95,7 @@
 			onclick={() => closeMenu()}
 			variant="menu"
 			size="md"
-			activeClass="bg-quaternary"
+			activeClass="bg-tertiary dark:bg-quaternary"
 			title={t_menu_item_home(locale)}
 		>
 			<HouseIcon class="size-5" />
@@ -110,7 +111,7 @@
 				size="md"
 				variant="menu"
 				class="mt-2.5"
-				activeClass="bg-quaternary"
+				activeClass="bg-tertiary dark:bg-quaternary"
 				title={t_menu_item_login(locale)}
 			>
 				<UserRoundCheckIcon class="size-5" />
@@ -124,7 +125,7 @@
 				size="md"
 				variant="menu"
 				class="mt-2.5"
-				activeClass="bg-quaternary"
+				activeClass="bg-tertiary dark:bg-quaternary"
 				title={t_menu_item_registration(locale)}
 			>
 				<UserRoundPlusIcon class="size-5" />
@@ -139,7 +140,7 @@
 				class="mt-2.5 w-full justify-start"
 				size="md"
 				variant="menu"
-				activeClass="bg-quaternary"
+				activeClass="bg-tertiary dark:bg-quaternary"
 				title={t_menu_item_profile(locale)}
 			>
 				<UserRoundIcon class="size-5" />
@@ -153,7 +154,7 @@
 				class="mt-2.5 w-full justify-start"
 				size="md"
 				variant="menu"
-				activeClass="bg-quaternary"
+				activeClass="bg-tertiary dark:bg-quaternary"
 				title={t_menu_item_settings(locale)}
 			>
 				<UserRoundCogIcon class="size-5" />

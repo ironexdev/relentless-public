@@ -41,7 +41,7 @@
     --background-color-button-primary: var(--colors-blue-600);
     --background-color-button-secondary: var(--colors-blue-600);
     --background-color-button-icon: var(--colors-blue-600);
-    --background-color-select: var(--background-color-quaternary);
+    --background-color-select: var(--background-color-tertiary);
     --background-color-overlay: #00000080;
     --background-color-toast-success: #14532d;
     --background-color-toast-error: #561000;
@@ -50,7 +50,7 @@
 
     /* Text Colors */
     --text-color-primary: var(--colors-black);
-    --text-color-secondary: var(--colors-zinc-700);
+    --text-color-secondary: #4747d7;
     --text-color-success: var(--colors-green-800);
     --text-color-error: var(--colors-red-800);
     --text-color-button: var(--colors-zinc-200);
@@ -60,6 +60,7 @@
     /* Border Colors */
     --border-color-primary: var(--colors-zinc-300);
     --border-color-secondary: var(--colors-zinc-400);
+    --border-color-error: var(--colors-red-300);
 
     /* Ring Colors */
     --ring-color-primary: var(--colors-zinc-400);
@@ -73,7 +74,7 @@
     --icon-color-error: var(--colors-red-600);
 
     /* Gradient */
-    --background-image-gradient-header: linear-gradient(0deg, var(--colors-zinc-100) 0%, var(--colors-zinc-200) 100%);
+    --background-image-gradient-header: var(--colors-white); /* linear-gradient(0deg, var(--colors-zinc-100) 0%, var(--colors-zinc-200) 100%); */
     --background-image-gradient-footer: linear-gradient(0deg, var(--colors-zinc-100) 0%, var(--colors-zinc-200) 100%);
     --background-image-gradient-button: linear-gradient(90deg, var(--colors-purple-500) 0%, var(--colors-violet-500) 100%);
     --background-image-gradient-button-hover: linear-gradient(90deg, var(--colors-purple-400) 0%, var(--colors-violet-400) 100%);
@@ -214,7 +215,7 @@
         --text-color-highlight: var(--colors-green-200);
 
         /* Border Colors */
-        --border-color-primary: var(--colors-zinc-700);
+        --border-color-primary: var(--colors-zinc-600);
         --border-color-secondary: var(--colors-zinc-500);
 
         /* Ring Colors */
