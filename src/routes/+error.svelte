@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Header from '$lib/components/Header.svelte';
 	import {
 		t_error_not_found_page_title,
 		t_error_not_found_title
@@ -23,7 +22,6 @@
 	<title>{t_error_not_found_page_title(locale)}</title>
 </svelte:head>
 
-<Header class="ntw-header-onecol" />
 <main class="ntw-main-onecol">
 	<div class="relative mx-auto flex min-h-full w-full min-w-[320px] flex-1 flex-col">
 		<div class="flex h-[35vh] w-full items-center justify-center">

@@ -1,5 +1,6 @@
 import { APP_TITLE } from '$lib/config';
-import { type LocaleType, t } from '$lib/t';
+import type { LocaleType } from '$lib/types/locale-type.ts';
+import { t } from '$lib/t.ts';
 
 const appTitle = APP_TITLE;
 

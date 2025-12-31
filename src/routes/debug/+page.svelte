@@ -74,15 +74,6 @@
 </div>
 
 <style>
-	:global(body) {
-		margin: 0;
-
-		@media (prefers-color-scheme: dark) {
-			color: #ededed;
-			background-color: #0a0a0a;
-		}
-	}
-
 	main {
 		display: flex;
 		min-height: 100vh;
@@ -115,16 +106,6 @@
 	p {
 		margin: 0;
 		font-size: 20px;
-	}
-
-	a {
-		color: #6341f0;
-		text-decoration: underline;
-		cursor: pointer;
-
-		@media (prefers-color-scheme: dark) {
-			color: #b3a1ff;
-		}
 	}
 
 	button {
@@ -173,10 +154,6 @@
 		max-width: 500px;
 		line-height: 1.5;
 		font-size: 20px;
-
-		@media (prefers-color-scheme: dark) {
-			color: #a49fb5;
-		}
 	}
 
 	.flex-spacer {

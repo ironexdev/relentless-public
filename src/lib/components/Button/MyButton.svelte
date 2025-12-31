@@ -3,6 +3,7 @@
 	import { cva, type VariantProps } from 'class-variance-authority';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils/string-utils';
+
 	const buttonVariants = cva(
 		'relative overflow-hidden flex items-center justify-center select-none disabled:pointer-events-none cursor-pointer disabled:opacity-50 outline-none transition-colors',
 		{
@@ -11,8 +12,8 @@
 					primary:
 						'bg-gradient-button hover:bg-gradient-button-hover text-button transition-all duration-xs rounded-full',
 					secondary: 'bg-button-secondary text-button rounded-full',
-					icon: 'hover:bg-tertiary dark:hover:bg-quaternary duration-xs rounded-full text-secondary hover:text-primary',
-					menu: 'justify-start rounded-full w-full hover:bg-tertiary dark:hover:bg-quaternary transition-all duration-xs',
+					icon: 'hover:bg-quaternary duration-xs rounded-full text-secondary hover:text-primary',
+					menu: 'justify-start rounded-full w-full hover:bg-quaternary transition-all duration-xs',
 					blank: ''
 				},
 				size: {
@@ -63,7 +64,7 @@
 	type={rest.type || 'button'}
 	aria-pressed={isActive}
 	onpointerdown={(e) => {
-		if (variant !== 'menu') {
+		if (variant && !['menu', 'blank'].includes(variant)) {
 			buttonAnimation(e);
 		}
 	}}

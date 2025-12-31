@@ -21,44 +21,44 @@
 /* Layout Utilities ********************************************************/
 /***************************************************************************/
 @utility header-based-h {
-    height: 60px;
+    height: 80px;
     @media (min-height: 640px) {
-        height: 80px;
+        height: 100px;
     }
 }
 
 @utility header-based-pt {
-    padding-top: 60px;
+    padding-top: 80px;
     @media (min-height: 640px) {
-        padding-top: 80px;
+        padding-top: 100px;
     }
 }
 
 @utility header-based-top {
-    top: 60px;
+    top: 80px;
     @media (min-height: 640px) {
-        top: 80px;
+        top: 100px;
     }
 }
 
 @utility footer-based-h {
-    height: 60px;
+    height: 80px;
     @media (min-height: 640px) {
-        height: 80px;
+        height: 100px;
     }
 }
 
 @utility footer-based-pb {
-    padding-bottom: 60px;
+    padding-bottom: 80px;
     @media (min-height: 640px) {
-        padding-bottom: 80px;
+        padding-bottom: 100px;
     }
 }
 
 @utility footer-based-bottom {
-    bottom: 60px;
+    bottom: 80px;
     @media (min-height: 640px) {
-        bottom: 80px;
+        bottom: 100px;
     }
 }
 

@@ -149,7 +149,8 @@ async function handleAuth(event: RequestEvent) {
 			if (typeof decoded === 'object' && 'userId' in decoded && 'email' in decoded) {
 				event.locals.user = {
 					userId: decoded.userId as string,
-					email: decoded.email as string
+					email: decoded.email as string,
+					createdAt: decoded.createdAd as Date
 				};
 				return;
 			}
@@ -169,7 +170,7 @@ async function handleAuth(event: RequestEvent) {
 		if (storedToken && storedToken.user) {
 			const { user, id: oldTokenId } = storedToken;
 			await AuthService.refreshSession(event.cookies, user, oldTokenId);
-			event.locals.user = { userId: user.id, email: user.email };
+			event.locals.user = { userId: user.id, email: user.email, createdAt: user.createdAt };
 			return;
 		} else {
 			CookieService.deleteAuthCookies(event.cookies);

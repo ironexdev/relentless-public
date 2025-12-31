@@ -4,7 +4,9 @@ import {
 	t_email_login_attempt_subject,
 	t_email_login_subject,
 	t_email_registration_attempt_subject,
-	t_email_registration_subject
+	t_email_registration_subject,
+	t_email_verification_subject,
+	t_email_change_email_attempt_subject
 } from '$lib/i18n/messages/t-email';
 import EmailTemplateService from '$lib/server/services/email/email-template-service';
 import type { CompiledTemplateResultType } from '$lib/server/services/template-service';
@@ -79,6 +81,22 @@ export default class EmailService {
 		return { text, html };
 	}
 
+	static async sendChangeEmailAttemptEmail(
+		locale: LocaleType,
+		to: string,
+		loginLink: string
+	): Promise<CompiledTemplateResultType> {
+		const subject = t_email_change_email_attempt_subject(locale);
+
+		const template = await EmailTemplateService.getChangeEmailAttemptTemplate(locale, loginLink);
+
+		const { text, html } = template;
+
+		await this.sendEmail(to, subject, text, html);
+
+		return { text, html };
+	}
+
 	static async sendLoginEmail(
 		locale: LocaleType,
 		to: string,
@@ -105,6 +123,22 @@ export default class EmailService {
 		const subject = t_email_registration_subject(locale);
 
 		const template = await EmailTemplateService.getRegistrationTemplate(locale, { pin });
+
+		const { text, html } = template;
+
+		await this.sendEmail(to, subject, text, html);
+
+		return { text, html };
+	}
+
+	static async sendVerificationEmail(
+		locale: LocaleType,
+		to: string,
+		pin: string
+	): Promise<CompiledTemplateResultType> {
+		const subject = t_email_verification_subject(locale);
+
+		const template = await EmailTemplateService.getVerificationTemplate(locale, { pin });
 
 		const { text, html } = template;
 

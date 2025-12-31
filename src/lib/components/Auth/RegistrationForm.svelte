@@ -23,7 +23,8 @@
 		loading = true;
 		return async ({ result, update }) => {
 			if (result.type === 'redirect') {
-				goto(result.location, { invalidateAll: true });
+				// eslint-disable-next-line svelte/no-navigation-without-resolve
+				await goto(result.location, { invalidateAll: true });
 			} else {
 				response = await handleFormResult(result);
 				await update({ reset: false });
@@ -36,6 +37,7 @@
 <form
 	method="POST"
 	action="/auth?/registration"
+	novalidate
 	use:enhance={handleSubmit}
 	class="flex flex-col items-center gap-10"
 >

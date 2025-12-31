@@ -8,6 +8,7 @@ declare global {
 			user: {
 				userId: string;
 				email: string;
+				createdAt: Date;
 			} | null;
 			canonicalPath: string;
 			toast?: {

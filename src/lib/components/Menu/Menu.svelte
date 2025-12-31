@@ -57,24 +57,31 @@
 		const newLocale = selectElement.value as LocaleType;
 		window.location.href = getLocalizedUrl(newLocale, canonicalPath);
 	}
+
+	function handleOverlayKeydown(e: KeyboardEvent) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			close();
+		}
+	}
 </script>
 
 <button
 	type="button"
-	aria-label="Close menu"
+	aria-label={t_menu_close(locale)}
 	class={cn(
 		'invisible fixed inset-0 z-menu-overlay w-full cursor-pointer bg-overlay opacity-0 transition-all duration-xs ease-in-out',
 		menuState.isOpen && 'visible opacity-100'
 	)}
 	onclick={() => closeMenu()}
-	onkeydown={(e) => e.key === 'Escape' && closeMenu()}
+	onkeydown={handleOverlayKeydown}
 ></button>
 
 <menu
 	data-testid="menu"
 	class={cn(
-		'fixed top-0 bottom-0 left-0 z-menu mx-auto w-[320px] origin-left [transform:rotate3d(0,1,0,90deg)] overflow-y-auto bg-primary transition-transform duration-xs ease-in-out lg:w-[400px] dark:bg-tertiary',
-		menuState.isOpen && '[transform:rotate3d(0,0,0,0deg)]'
+		'fixed inset-x-0 bottom-0 z-menu mx-auto max-w-[480px] origin-bottom [transform:translate3d(0,100%,0)] overflow-y-auto bg-primary bg-tertiary pb-[120px] transition-transform duration-xs ease-in-out',
+		menuState.isOpen && '[transform:translate3d(0,0,0)]'
 	)}
 >
 	<li class="flex header-based-h items-center justify-between px-5">
@@ -95,7 +102,7 @@
 			onclick={() => closeMenu()}
 			variant="menu"
 			size="md"
-			activeClass="bg-tertiary dark:bg-quaternary"
+			activeClass="bg-quaternary"
 			title={t_menu_item_home(locale)}
 		>
 			<HouseIcon class="size-5" />
@@ -111,7 +118,7 @@
 				size="md"
 				variant="menu"
 				class="mt-2.5"
-				activeClass="bg-tertiary dark:bg-quaternary"
+				activeClass="bg-quaternary"
 				title={t_menu_item_login(locale)}
 			>
 				<UserRoundCheckIcon class="size-5" />
@@ -125,7 +132,7 @@
 				size="md"
 				variant="menu"
 				class="mt-2.5"
-				activeClass="bg-tertiary dark:bg-quaternary"
+				activeClass="bg-quaternary"
 				title={t_menu_item_registration(locale)}
 			>
 				<UserRoundPlusIcon class="size-5" />
@@ -140,7 +147,7 @@
 				class="mt-2.5 w-full justify-start"
 				size="md"
 				variant="menu"
-				activeClass="bg-tertiary dark:bg-quaternary"
+				activeClass="bg-quaternary"
 				title={t_menu_item_profile(locale)}
 			>
 				<UserRoundIcon class="size-5" />
@@ -154,7 +161,7 @@
 				class="mt-2.5 w-full justify-start"
 				size="md"
 				variant="menu"
-				activeClass="bg-tertiary dark:bg-quaternary"
+				activeClass="bg-quaternary"
 				title={t_menu_item_settings(locale)}
 			>
 				<UserRoundCogIcon class="size-5" />

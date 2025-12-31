@@ -38,6 +38,7 @@
 
 <form
 	method="POST"
+	novalidate
 	action="/auth?/login"
 	use:enhance={handleSubmit}
 	class="flex flex-col items-center gap-10"
@@ -47,6 +48,7 @@
 		name="email"
 		type="email"
 		autocomplete="email"
+		autofocus={true}
 		placeholder={t_login_form_email_placeholder(locale)}
 		error={response?.data?.email}
 	/>
@@ -65,7 +67,7 @@
 	<NavLink
 		title={t_login_form_skip_button(locale)}
 		href="/verify-login"
-		class="ml-auto text-secondary hover:underline text-sm"
+		class="ml-auto text-sm text-secondary hover:underline"
 	>
 		{t_login_form_skip_button(locale)}
 	</NavLink>

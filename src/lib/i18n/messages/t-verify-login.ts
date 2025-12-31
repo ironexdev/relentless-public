@@ -78,7 +78,7 @@ export function t_verify_login_form_submit_button(locale: LocaleType): string {
 
 export function t_verify_login_form_back_button(locale: LocaleType): string {
 	const messages = {
-		en: 'Go Back',
+		en: 'Go back',
 		cs: 'Jít zpět'
 	};
 

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ -f .env ]; then
+  set -a # Automatically export all variables
+  # Use sed to remove Windows line endings (\r) before sourcing
+  eval "$(sed 's/\r$//' .env)"
+  set +a # Stop automatically exporting
+else
+  echo ".env file not found."
+  exit 1
+fi
+
+set -e
+
+docker rm $DATABASE_HOST
+
+bin/docker/dev/run-db
+
+pnpm dev

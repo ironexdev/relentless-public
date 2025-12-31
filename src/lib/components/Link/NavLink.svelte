@@ -13,8 +13,8 @@
 			variants: {
 				variant: {
 					blank: '',
-					icon: 'hover:bg-tertiary dark:hover:bg-quaternary duration-xs rounded-full text-secondary hover:text-primary',
-					menu: 'justify-start rounded-full w-full hover:bg-tertiary dark:hover:bg-quaternary transition-all duration-xs'
+					icon: 'hover:bg-quaternary duration-xs rounded-full text-secondary hover:text-primary',
+					menu: 'justify-start rounded-full w-full hover:bg-quaternary transition-all duration-xs'
 				},
 				size: {
 					blank: '',

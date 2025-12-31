@@ -1,0 +1,105 @@
+<script lang="ts">
+	import { enhance } from '$app/forms';
+	import { page } from '$app/state';
+	import MyButton from '$lib/components/Button/MyButton.svelte';
+	import type { LocaleType } from '$lib/types/locale-type';
+	import {
+		t_user_email_step_one_submit,
+		t_user_email_step_one_skip,
+		t_user_email_description_step_one,
+		t_user_email_pin_sent_to,
+		t_user_email_step_one_success
+	} from '$lib/i18n/messages/t-user-modal';
+	import { handleFormResult } from '$lib/utils/form-utils';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { tick } from 'svelte';
+	import { ArrowRightIcon, LoaderCircleIcon } from '@lucide/svelte';
+	import { toast } from 'svelte-sonner';
+	import { VerificationActionEnum } from '$lib/enums/verification-action-enum';
+
+	type Props = {
+		currentEmail: string;
+		isStepVisible: boolean;
+		onSuccess: () => void;
+		onSkip: () => void;
+	};
+
+	let { currentEmail, isStepVisible, onSuccess, onSkip }: Props = $props();
+
+	const locale: LocaleType = $derived(page.data.locale);
+	let isLoading = $state(false);
+	let formRef: HTMLFormElement | undefined = $state();
+
+	$effect(() => {
+		if (isStepVisible && formRef) {
+			tick().then(() => {
+				const button = formRef?.querySelector('button[type="submit"]') as HTMLButtonElement;
+				button?.focus();
+			});
+		}
+	});
+
+	const handleSubmit: SubmitFunction = () => {
+		isLoading = true;
+		return async ({ result, update }) => {
+			if (result.type === 'success') {
+				toast.success(t_user_email_step_one_success(locale));
+				onSuccess();
+			} else {
+				await handleFormResult(result);
+				await update({ reset: false });
+			}
+			isLoading = false;
+		};
+	};
+</script>
+
+<form
+	bind:this={formRef}
+	method="POST"
+	action="/settings?/request-verification-pin"
+	use:enhance={handleSubmit}
+	novalidate
+	class="flex h-full w-full flex-1 flex-col justify-between"
+>
+	<input type="hidden" name="email" value={currentEmail} />
+	<input type="hidden" name="action" value={VerificationActionEnum.CHANGE_EMAIL} />
+	<div class="flex flex-1 flex-col items-center justify-center gap-2 px-5 pt-5 xxs:px-10">
+		<div class="w-full text-sm text-secondary sm:text-base">
+			{t_user_email_description_step_one(locale)}
+		</div>
+		<div class="flex w-full flex-1 flex-col items-center justify-center text-center">
+			<div class="w-full">
+				<p class="text-primary">{t_user_email_pin_sent_to(locale)}</p>
+				<p class="mt-1 text-base font-medium text-highlight">{currentEmail}</p>
+			</div>
+		</div>
+	</div>
+	<div
+		class="flex footer-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-footer"
+	>
+		<MyButton
+			type="submit"
+			disabled={isLoading}
+			title={t_user_email_step_one_submit(locale)}
+			class="min-w-[160px]"
+		>
+			{#if isLoading}
+				<LoaderCircleIcon class="animate-spin" />
+			{:else}
+				{t_user_email_step_one_submit(locale)}
+			{/if}
+		</MyButton>
+		<MyButton
+			type="button"
+			onclick={onSkip}
+			variant="icon"
+			size="icon-md"
+			class="absolute right-5"
+			disabled={isLoading}
+			title={t_user_email_step_one_skip(locale)}
+		>
+			<ArrowRightIcon />
+		</MyButton>
+	</div>
+</form>

@@ -141,3 +141,72 @@ export function t_email_registration_attempt_sentence2(
 
 	return t(messages, locale, 1, { loginLink });
 }
+
+export function t_email_verification_subject(locale: LocaleType): string {
+	const messages = {
+		en: 'Verification',
+		cs: 'Ověření'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_email_verification_sentence1(locale: LocaleType, pin: string): string {
+	const messages = {
+		en: `Here is your verification PIN <b>{pin}</b>.`,
+		cs: `Tady je tvůj ověřovací PIN <b>{pin}</b>.`
+	};
+
+	return t(messages, locale, 1, { pin });
+}
+
+export function t_email_verification_sentence2(locale: LocaleType, securityEmail: string): string {
+	const messages = {
+		en: `If this wasn't you, and this happened multiple times, then please let us know at <a href="mailto:{securityEmail}">{securityEmail}</a>.`,
+		cs: `Pokud to nebyl/a ty a to se stalo vícekrát, tak nám dej vědět na <a href="mailto:{securityEmail}">{securityEmail}</a>.`
+	};
+
+	return t(messages, locale, 1, { securityEmail });
+}
+
+export function t_email_change_email_attempt_subject(locale: LocaleType): string {
+	const messages = {
+		en: 'Email Change Attempt Detected',
+		cs: 'Zjištěn pokus o změnu emailu'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_email_change_email_attempt_sentence1(locale: LocaleType): string {
+	const messages = {
+		en: 'Someone has tried to change their email to your email address, even though you already have an account on our site.',
+		cs: 'Někdo se pokusil změnit svůj email na tvoji e-mailovou adresu i když u nás už máš účet.'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_email_change_email_attempt_sentence2(
+	locale: LocaleType,
+	loginLink: string
+): string {
+	const messages = {
+		en: `If this was you, then you can use the following <a href="{loginLink}">link</a> to login to your existing account.`,
+		cs: `Pokud jsi to byl/a ty, tak použij následující <a href="{loginLink}">odkaz</a> pro přihlášení do svého existujícího účtu.`
+	};
+
+	return t(messages, locale, 1, { loginLink });
+}
+
+export function t_email_change_email_attempt_sentence3(
+	locale: LocaleType,
+	securityEmail: string
+): string {
+	const messages = {
+		en: `If this wasn't you, and this happened multiple times, then please let us know at <a href="mailto:{securityEmail}">{securityEmail}</a>.`,
+		cs: `Pokud to nebyl/a ty a to se stalo vícekrát, tak nám dej vědět na <a href="mailto:{securityEmail}">{securityEmail}</a>.`
+	};
+
+	return t(messages, locale, 1, { securityEmail });
+}

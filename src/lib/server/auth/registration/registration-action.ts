@@ -12,7 +12,6 @@ import { CookieService } from '$lib/server/services/cookie-service';
 import EmailService from '$lib/server/services/email/email-service';
 import type { RequestEvent } from '@sveltejs/kit';
 import { fail, redirect } from '@sveltejs/kit';
-import crypto from 'crypto';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 

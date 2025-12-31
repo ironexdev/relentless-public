@@ -1,9 +1,5 @@
-import { ToastEnum } from '$lib/enums/toast-enum';
 import { VerificationActionEnum } from '$lib/enums/verification-action-enum';
-import {
-	t_verify_login_invalid_or_expired_pin,
-	t_verify_login_success
-} from '$lib/i18n/messages/t-verify-login';
+import { t_verify_login_invalid_or_expired_pin } from '$lib/i18n/messages/t-verify-login';
 import { getLocalizedUrl } from '$lib/routes';
 import { verifySchema } from '$lib/schemas';
 import { db } from '$lib/server/database';
