@@ -80,7 +80,7 @@
 <menu
 	data-testid="menu"
 	class={cn(
-		'fixed inset-x-0 bottom-0 z-menu mx-auto max-w-[480px] origin-bottom [transform:translate3d(0,100%,0)] overflow-y-auto bg-primary bg-tertiary pb-[120px] transition-transform duration-xs ease-in-out',
+		'fixed inset-y-0 left-0 z-menu w-full max-w-[420px] origin-left [transform:translate3d(-100%,0,0)] overflow-y-auto bg-tertiary pb-[120px] transition-transform duration-xs ease-in-out',
 		menuState.isOpen && '[transform:translate3d(0,0,0)]'
 	)}
 >
@@ -171,9 +171,6 @@
 			</NavLink>
 			<LogoutButton class="mt-2.5" />
 		{/if}
-	</li>
-	<li class="mt-8">
-		<div class="border-fade-t-both-primary"></div>
 	</li>
 	<li class="px-3 lg:px-5">
 		<div class="flex header-based-h items-center text-sm text-secondary uppercase">

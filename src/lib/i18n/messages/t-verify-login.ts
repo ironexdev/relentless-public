@@ -2,15 +2,13 @@ import { APP_TITLE } from '$lib/config';
 import { t } from '$lib/t';
 import { type LocaleType } from '$lib/types/locale-type';
 
-const appTitle = APP_TITLE;
-
 export function t_verify_login_page_title(locale: LocaleType) {
 	const messages = {
-		en: '{appTitle} | Verify Login',
-		cs: '{appTitle} | Ověřit Přihlášení'
+		en: 'Verify Login | {appTitle}',
+		cs: 'Ověřit Přihlášení | {appTitle}'
 	};
 
-	return t(messages, locale, 1, { appTitle });
+	return t(messages, locale, 1, { appTitle: APP_TITLE });
 }
 
 export function t_verify_login_meta_description(locale: LocaleType): string {
@@ -69,7 +67,7 @@ export function t_verify_login_form_pin_placeholder(locale: LocaleType): string 
 
 export function t_verify_login_form_submit_button(locale: LocaleType): string {
 	const messages = {
-		en: 'Login',
+		en: 'Log In',
 		cs: 'Přihlásit se'
 	};
 

@@ -5,11 +5,13 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 1024px;
     --breakpoint-xl: 1280px;
-    --breakpoint-2xl: 1536px;
+    --breakpoint-2xl: 1440px;
     --breakpoint-3xl: 1920px;
 
     --z-index-menu-overlay: 1000;
     --z-index-menu: 1000;
+    --z-index-modal-overlay: 1000;
+    --z-index-modal: 1000;
     --z-index-header: 999;
 
     --font-size-base: 16px;
@@ -22,7 +24,6 @@
     --transition-duration-xs: 250ms;
 
     --header-based-h: 80px;
-    --footer-based-h: 80px;
 
     --background-color-primary: var(--colors-zinc-880);
     --background-color-secondary: var(--colors-zinc-840);
@@ -41,7 +42,7 @@
     --background-color-toast-info: #1e3a8a;
 
     --text-color-primary: var(--colors-white);
-    --text-color-secondary: var(--colors-zinc-400);
+    --text-color-secondary: var(--colors-zinc-350);
     --text-color-success: var(--colors-green-100);
     --text-color-error: var(--colors-red-200);
     --text-color-button: var(--text-color-primary);
@@ -50,6 +51,7 @@
 
     --border-color-primary: var(--colors-zinc-600);
     --border-color-secondary: var(--colors-zinc-500);
+    --border-color-tertiary: var(--colors-zinc-750);
 
     --ring-color-primary: var(--colors-zinc-500);
     --ring-color-error: var(--colors-red-300);
@@ -61,7 +63,6 @@
     --icon-color-error: var(--colors-red-200);
 
     --background-image-gradient-header: linear-gradient(0deg, var(--colors-zinc-880) 0%, var(--colors-zinc-750) 100%);
-    --background-image-gradient-footer: linear-gradient(0deg, var(--colors-zinc-900) 0%, var(--colors-zinc-800) 100%);
     --background-image-gradient-button: linear-gradient(90deg, var(--colors-purple-500) 0%, var(--colors-violet-500) 100%);
     --background-image-gradient-button-hover: linear-gradient(90deg, var(--colors-purple-400) 0%, var(--colors-violet-400) 100%);
     --border-image-gradient-main: linear-gradient(to bottom, var(--colors-zinc-700), transparent);
@@ -156,6 +157,7 @@
     --colors-zinc-100: #F4F4F5;
     --colors-zinc-200: #E4E4E7;
     --colors-zinc-300: #D4D4D8;
+    --colors-zinc-350: #BBBBBF;
     --colors-zinc-400: #A1A1AA;
     --colors-zinc-500: #71717A;
     --colors-zinc-600: #52525B;
@@ -169,7 +171,6 @@
 
 @media (min-width: 640px) {
     :root {
-        --header-based-h: 100px;
-        --footer-based-h: 100px;
+        --header-based-h: 80px;
     }
 }

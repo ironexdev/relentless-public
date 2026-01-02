@@ -9,14 +9,14 @@
 		t_settings_title
 	} from '$lib/i18n/messages/t-settings';
 	import {
-		t_verify_login_meta_description,
-		t_verify_login_page_title
-	} from '$lib/i18n/messages/t-verify-login';
+		t_settings_meta_description,
+		t_settings_page_title
+	} from '$lib/i18n/messages/t-settings';
 	import type { LocaleType } from '$lib/types/locale-type';
 	import type { PageData } from '../../../.svelte-kit/types/src/routes/create-account/$types';
 	import MyButton from '$lib/components/Button/MyButton.svelte';
 	import { PencilLineIcon, Trash2Icon } from '@lucide/svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import EditEmailModal from '$lib/components/Modal/User/Email/EditEmailModal.svelte';
 
 	const locale: LocaleType = $derived(page.data.locale);
@@ -27,25 +27,23 @@
 </script>
 
 <svelte:head>
-	<title>{t_verify_login_page_title(locale)}</title>
-	<meta name="description" content={t_verify_login_meta_description(locale)} />
+	<title>{t_settings_page_title(locale)}</title>
+	<meta name="description" content={t_settings_meta_description(locale)} />
 	<link rel="canonical" href={data.url} />
 </svelte:head>
 
-<main class="ntw-main-onecol">
-	<img src="/media/wallpaper.jpg" class="fixed inset-0 min-h-full min-w-full opacity-20" alt="" />
+<Header />
+
+<main class="ntw-main">
 	<section
 		class="relative mx-auto flex min-h-full w-full max-w-[640px] min-w-[320px] flex-1 flex-col"
-		aria-labelledby="settings-heading"
 	>
 		<div class="flex h-[35vh] w-full items-center justify-center">
 			<h1 id="settings-heading" class="w-full text-center text-3xl text-primary sm:text-4xl">
 				{t_settings_title(locale)}
 			</h1>
 		</div>
-		<div
-			class="flex-1 rounded-t-3xl border-x border-t border-primary bg-tertiary px-5 py-12 sm:px-10"
-		>
+		<div class="flex-1 border-t border-primary bg-tertiary px-5 py-12 sm:border-x sm:px-10">
 			<div class="flex w-full flex-col gap-8">
 				<dl class="w-full">
 					<div class="flex w-full flex-col gap-1.5">
@@ -81,7 +79,5 @@
 		</div>
 	</section>
 </main>
-
-<Footer />
 
 <EditEmailModal bind:showModal={showEditEmail} email={user.email} />

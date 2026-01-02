@@ -2,15 +2,13 @@ import { APP_TITLE } from '$lib/config';
 import { t } from '$lib/t';
 import { type LocaleType } from '$lib/types/locale-type';
 
-const appTitle = APP_TITLE;
-
 export function t_verify_registration_page_title(locale: LocaleType) {
 	const messages = {
-		en: '{appTitle} | Verify Account',
-		cs: '{appTitle} | Ověřit Účet'
+		en: 'Verify Account | {appTitle}',
+		cs: 'Ověřit Účet | {appTitle}'
 	};
 
-	return t(messages, locale, 1, { appTitle });
+	return t(messages, locale, 1, { appTitle: APP_TITLE });
 }
 
 export function t_verify_registration_meta_description(locale: LocaleType): string {

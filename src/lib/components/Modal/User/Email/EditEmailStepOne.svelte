@@ -65,18 +65,18 @@
 	<input type="hidden" name="email" value={currentEmail} />
 	<input type="hidden" name="action" value={VerificationActionEnum.CHANGE_EMAIL} />
 	<div class="flex flex-1 flex-col items-center justify-center gap-2 px-5 pt-5 xxs:px-10">
-		<div class="w-full text-sm text-secondary sm:text-base">
+		<div class="w-full text-sm text-primary sm:text-base">
 			{t_user_email_description_step_one(locale)}
 		</div>
 		<div class="flex w-full flex-1 flex-col items-center justify-center text-center">
 			<div class="w-full">
-				<p class="text-primary">{t_user_email_pin_sent_to(locale)}</p>
-				<p class="mt-1 text-base font-medium text-highlight">{currentEmail}</p>
+				<p class="text-secondary">{t_user_email_pin_sent_to(locale)}</p>
+				<p class="mt-1 text-base font-medium text-primary">{currentEmail}</p>
 			</div>
 		</div>
 	</div>
 	<div
-		class="flex footer-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-footer"
+		class="flex header-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-header"
 	>
 		<MyButton
 			type="submit"

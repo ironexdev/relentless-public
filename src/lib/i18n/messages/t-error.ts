@@ -2,15 +2,13 @@ import { APP_TITLE } from '$lib/config';
 import type { LocaleType } from '$lib/types/locale-type.ts';
 import { t } from '$lib/t.ts';
 
-const appTitle = APP_TITLE;
-
 export function t_error_not_found_page_title(locale: LocaleType) {
 	const messages = {
-		en: '{appTitle} | Page Not Found',
-		cs: '{appTitle} | Stránka Nenalezena'
+		en: 'Page Not Found | {appTitle}',
+		cs: 'Stránka Nenalezena | {appTitle}'
 	};
 
-	return t(messages, locale, 1, { appTitle });
+	return t(messages, locale, 1, { appTitle: APP_TITLE });
 }
 
 export function t_error_not_found_title(locale: LocaleType): string {

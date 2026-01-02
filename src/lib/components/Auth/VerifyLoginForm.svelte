@@ -5,7 +5,7 @@
 	import MyInput from '$lib/components/Input/MyInput.svelte';
 	import NavLink from '$lib/components/Link/NavLink.svelte';
 	import type { LocaleType } from '$lib/types/locale-type';
-	import { ArrowLeft, LoaderCircle } from '@lucide/svelte';
+	import { LoaderCircle } from '@lucide/svelte';
 	import {
 		t_verify_login_form_submit_button,
 		t_verify_login_form_email_label,
@@ -16,7 +16,6 @@
 	} from '$lib/i18n/messages/t-verify-login';
 	import { type FormResultResponse, handleFormResult } from '$lib/utils/form-utils';
 	import type { SubmitFunction } from '@sveltejs/kit';
-	import { t_login_form_skip_button } from '$lib/i18n/messages/t-login.ts';
 
 	type Props = {
 		email: string;
@@ -85,11 +84,4 @@
 			{/if}
 		</MyButton>
 	</div>
-	<NavLink
-		title={t_verify_login_form_back_button(locale)}
-		href="/login"
-		class="mr-auto text-sm text-secondary hover:underline"
-	>
-		{t_verify_login_form_back_button(locale)}
-	</NavLink>
 </form>

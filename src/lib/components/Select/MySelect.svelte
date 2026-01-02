@@ -5,7 +5,7 @@
 	import { ChevronDown } from '@lucide/svelte';
 
 	const selectVariants = cva(
-		'flex items-center select-none disabled:pointer-events-none cursor-pointer disabled:opacity-50 outline-none rounded-lg appearance-none w-full',
+		'flex items-center select-none disabled:pointer-events-none cursor-pointer disabled:opacity-50 outline-none rounded-sm appearance-none w-full',
 		{
 			variants: {
 				variant: {

@@ -66,7 +66,7 @@ export function t_user_email_description_step_two(locale: LocaleType): string {
 
 export function t_user_email_description_step_three(locale: LocaleType): string {
 	const messages = {
-		en: '3/ Paste the PIN from your new email inbox and submit the form. After this, you will be logged out and you can login with your new email.',
+		en: '3/ Paste the PIN from your new email inbox and submit the form. After this, you will be logged out and then you can login with your new email.',
 		cs: '3/ Vlož PIN z nového emailu a odešli formulář. Následně budeš odhlášen/a a můžeš se přihlásit s novým emailem.'
 	};
 

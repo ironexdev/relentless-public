@@ -2,15 +2,13 @@ import { APP_TITLE } from '$lib/config';
 import { t } from '$lib/t';
 import { type LocaleType } from '$lib/types/locale-type';
 
-const appTitle = APP_TITLE;
-
 export function t_login_page_title(locale: LocaleType) {
 	const messages = {
-		en: '{appTitle} | Login',
-		cs: '{appTitle} | Přihlášení'
+		en: 'Login | {appTitle}',
+		cs: 'Přihlášení | {appTitle}'
 	};
 
-	return t(messages, locale, 1, { appTitle });
+	return t(messages, locale, 1, { appTitle: APP_TITLE });
 }
 
 export function t_login_meta_description(locale: LocaleType): string {

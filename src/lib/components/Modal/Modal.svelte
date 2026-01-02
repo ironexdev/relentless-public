@@ -68,7 +68,7 @@
 			type="button"
 			aria-label={t_modal_close(locale)}
 			class={UtilsService.cn(
-				'invisible fixed inset-0 z-40 w-full cursor-pointer bg-overlay opacity-0 transition-all duration-xs ease-in-out',
+				'invisible fixed inset-0 z-modal-overlay w-full cursor-pointer bg-overlay opacity-0 transition-all duration-xs ease-in-out',
 				showModal && 'visible opacity-100'
 			)}
 			onclick={() => closeOnOverlayClick && close()}
@@ -77,7 +77,7 @@
 
 		<div
 			class={UtilsService.cn(
-				'pointer-events-auto fixed inset-x-0 top-[15vh] bottom-0 z-50 mx-auto w-full origin-bottom [transform:translate3d(0,100%,0)] rounded-t-[32px] bg-tertiary transition-transform duration-xs ease-in-out outline-none',
+				'pointer-events-auto fixed inset-x-0 top-[15vh] bottom-0 z-modal mx-auto w-full origin-bottom [transform:translate3d(0,100%,0)] rounded-t-[32px] border border-b-0 border-primary bg-tertiary transition-transform duration-xs ease-in-out outline-none',
 				showModal && '[transform:translate3d(0,0,0)]',
 				className
 			)}

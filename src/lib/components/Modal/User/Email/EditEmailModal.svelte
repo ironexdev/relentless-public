@@ -35,7 +35,7 @@
 <Modal bind:showModal className="flex max-w-[640px] flex-col">
 	{#snippet header()}
 		<div class="flex h-full w-full items-center justify-between px-5 pt-12 xxs:px-10">
-			<h3 class="text-lg text-primary">
+			<h3 class="text-lg text-secondary">
 				{t_user_email_modal_title(locale)}
 			</h3>
 			<MyButton

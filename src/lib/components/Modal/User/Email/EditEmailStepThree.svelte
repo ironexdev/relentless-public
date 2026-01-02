@@ -69,7 +69,7 @@
 >
 	<input type="hidden" name="email" value={newEmail} />
 	<div class="flex flex-1 flex-col justify-between gap-5 px-5 pt-5 xxs:px-10">
-		<div class="w-full text-sm text-secondary sm:text-base">
+		<div class="w-full text-sm text-primary sm:text-base">
 			{t_user_email_description_step_three(locale)}
 		</div>
 
@@ -85,7 +85,7 @@
 					error={response?.data?.pin}
 				/>
 
-				<div class="flex items-center gap-2.5 text-sm text-highlight">
+				<div class="flex items-center gap-2.5 text-sm text-primary">
 					<InfoIcon class="shrink-0" size={20} />
 					<span>{t_user_email_step_three_info(locale)}</span>
 				</div>
@@ -94,7 +94,7 @@
 	</div>
 
 	<div
-		class="flex footer-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-footer"
+		class="flex header-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-header"
 	>
 		<MyButton
 			type="button"
