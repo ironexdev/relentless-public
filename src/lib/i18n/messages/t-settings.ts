@@ -56,19 +56,10 @@ export function t_settings_delete_account_button_title(locale: LocaleType): stri
 	return t(messages, locale);
 }
 
-export function t_settings_verification_pin_sent(locale: LocaleType): string {
-	const messages = {
-		en: 'A verification PIN has been sent to your email',
-		cs: 'Ověřovací PIN byl odeslán na tvůj e-mail'
-	};
-
-	return t(messages, locale);
-}
-
 export function t_settings_page_title(locale: LocaleType) {
 	const messages = {
-		en: 'Verify Login | {appTitle}',
-		cs: 'Ověřit Přihlášení | {appTitle}'
+		en: 'Settings | {appTitle}',
+		cs: 'Nastavení | {appTitle}'
 	};
 
 	return t(messages, locale, 1, { appTitle: APP_TITLE });
@@ -76,8 +67,8 @@ export function t_settings_page_title(locale: LocaleType) {
 
 export function t_settings_meta_description(locale: LocaleType): string {
 	const messages = {
-		en: 'Verify login',
-		cs: 'Ověřit přihlášení'
+		en: 'Manage your account settings and preferences.',
+		cs: 'Spravujte nastavení svého účtu a předvolby.'
 	};
 
 	return t(messages, locale);

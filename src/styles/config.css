@@ -23,8 +23,6 @@
 
     --transition-duration-xs: 250ms;
 
-    --header-based-h: 80px;
-
     --background-color-primary: var(--colors-zinc-880);
     --background-color-secondary: var(--colors-zinc-840);
     --background-color-tertiary: var(--colors-zinc-750);
@@ -167,10 +165,4 @@
     --colors-zinc-840: #222225;
     --colors-zinc-880: #1D1D20;
     --colors-zinc-900: #18181B;
-}
-
-@media (min-width: 640px) {
-    :root {
-        --header-based-h: 80px;
-    }
 }

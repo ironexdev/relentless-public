@@ -13,6 +13,10 @@ export const users = pgTable('users', {
 		mode: 'date',
 		precision: 3
 	}).default(sql`CURRENT_TIMESTAMP(3)`),
+	username: varchar('username', { length: 255 }).unique(),
+	picture: varchar('picture', { length: 2000 }),
+	photo: varchar('photo', { length: 2000 }),
+	dob: timestamp('dob', { mode: 'date', precision: 3 }),
 	createdAt: timestamp('created_at').notNull().defaultNow(),
 	updatedAt: timestamp('updated_at').$onUpdate(() => new Date())
 });

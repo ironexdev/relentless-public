@@ -20,47 +20,6 @@
 
 /* Layout Utilities ********************************************************/
 /***************************************************************************/
-@utility header-based-h {
-    height: 80px;
-    @media (min-height: 640px) {
-        height: 100px;
-    }
-}
-
-@utility header-based-pt {
-    padding-top: 80px;
-    @media (min-height: 640px) {
-        padding-top: 100px;
-    }
-}
-
-@utility header-based-top {
-    top: 80px;
-    @media (min-height: 640px) {
-        top: 100px;
-    }
-}
-
-@utility header-based-h {
-    height: 80px;
-    @media (min-height: 640px) {
-        height: 100px;
-    }
-}
-
-@utility header-based-pb {
-    padding-bottom: 80px;
-    @media (min-height: 640px) {
-        padding-bottom: 100px;
-    }
-}
-
-@utility header-based-bottom {
-    bottom: 80px;
-    @media (min-height: 640px) {
-        bottom: 100px;
-    }
-}
 
 /* Border Fade */
 @utility border-fade-t-both-primary {

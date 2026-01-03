@@ -24,11 +24,13 @@
 <main class="ntw-main">
 	<div class="relative mx-auto flex min-h-full w-full max-w-[640px] min-w-[320px] flex-1 flex-col">
 		<div class="flex h-[35vh] w-full items-center justify-center">
-			<h1 class="w-full text-center text-3xl text-primary text-white sm:text-4xl">
+			<h1 class="w-full text-center text-3xl text-primary sm:text-4xl">
 				{t_verify_registration_title(locale)}
 			</h1>
 		</div>
-		<div class="flex-1 bg-tertiary px-5 py-12 sm:px-10">
+		<div
+			class="flex flex-1 flex-col gap-10 border-t border-primary bg-tertiary px-5 py-12 sm:border-x sm:px-10"
+		>
 			<VerifyRegistrationForm {email} />
 		</div>
 	</div>

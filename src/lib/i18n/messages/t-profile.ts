@@ -22,8 +22,8 @@ export function t_profile_page_title(locale: LocaleType) {
 
 export function t_profile_meta_description(locale: LocaleType): string {
 	const messages = {
-		en: 'View and manage your personal profile, account settings, and preferences.',
-		cs: 'Zobrazte a spravujte svůj osobní profil, nastavení účtu a předvolby.'
+		en: 'View and manage your personal profile information.',
+		cs: 'Zobrazte a spravujte informace o svém osobním profilu.'
 	};
 
 	return t(messages, locale);
