@@ -4,7 +4,10 @@
 	import { t_profile_meta_description, t_profile_page_title } from '$lib/i18n/messages/t-profile';
 	import type { LocaleType } from '$lib/types/locale-type';
 	import type { PageData } from '../../../.svelte-kit/types/src/routes/create-account/$types';
-	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Logo from '$lib/components/Logo.svelte';
+	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';
+	import Menu from '$lib/components/Menu/Menu.svelte';
 
 	const locale: LocaleType = $derived(page.data.locale);
 	const { data }: { data: PageData } = $props();
@@ -26,10 +29,17 @@
 				{t_profile_title(locale)}
 			</h1>
 		</div>
-		<div class="flex-1 border-t border-primary bg-tertiary px-5 py-12 sm:border-x sm:px-10">
+		<div
+			class="flex-1 rounded-t-3xl border-t border-primary bg-tertiary px-5 py-12 sm:border-x sm:px-10"
+		>
 			{user.email}
 		</div>
 	</section>
 </main>
 
-<Header />
+<Footer>
+	<MenuToggleButton />
+	<Logo class="absolute inset-0 m-auto" />
+</Footer>
+
+<Menu />

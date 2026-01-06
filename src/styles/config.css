@@ -12,7 +12,7 @@
     --z-index-menu: 1000;
     --z-index-modal-overlay: 1000;
     --z-index-modal: 1000;
-    --z-index-header: 999;
+    --z-index-footer: 999;
 
     --font-size-base: 16px;
     --font-size-base--line-height: 20px;
@@ -22,8 +22,6 @@
     --font-size-xs--line-height: 16px;
 
     --transition-duration-xs: 250ms;
-
-    --header-based-h: 80px;
 
     --background-color-primary: var(--colors-zinc-880);
     --background-color-secondary: var(--colors-zinc-840);
@@ -62,7 +60,7 @@
     --icon-color-success: var(--colors-green-200);
     --icon-color-error: var(--colors-red-200);
 
-    --background-image-gradient-header: linear-gradient(0deg, var(--colors-zinc-880) 0%, var(--colors-zinc-750) 100%);
+    --background-image-gradient-footer: linear-gradient(0deg, var(--colors-zinc-880) 0%, var(--colors-zinc-750) 100%);
     --background-image-gradient-button: linear-gradient(90deg, var(--colors-purple-500) 0%, var(--colors-violet-500) 100%);
     --background-image-gradient-button-hover: linear-gradient(90deg, var(--colors-purple-400) 0%, var(--colors-violet-400) 100%);
     --border-image-gradient-main: linear-gradient(to bottom, var(--colors-zinc-700), transparent);
@@ -167,10 +165,4 @@
     --colors-zinc-840: #222225;
     --colors-zinc-880: #1D1D20;
     --colors-zinc-900: #18181B;
-}
-
-@media (min-width: 640px) {
-    :root {
-        --header-based-h: 80px;
-    }
 }

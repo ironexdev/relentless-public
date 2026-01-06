@@ -5,7 +5,7 @@
 	import MyInput from '$lib/components/Input/MyInput.svelte';
 	import NavLink from '$lib/components/Link/NavLink.svelte';
 	import type { LocaleType } from '$lib/types/locale-type';
-	import { LoaderCircle } from '@lucide/svelte';
+	import { ArrowLeftIcon, LoaderCircle } from '@lucide/svelte';
 	import {
 		t_verify_login_form_submit_button,
 		t_verify_login_form_email_label,
@@ -66,11 +66,21 @@
 		label={t_verify_login_form_pin_label(locale)}
 		name="pin"
 		type="text"
-		autofocus={true}
 		placeholder={t_verify_login_form_pin_placeholder(locale)}
 		error={response?.data?.pin}
 	/>
 	<div class="relative flex w-full justify-center">
+		<MyButton
+			type="button"
+			variant="icon"
+			size="icon-md"
+			class="absolute left-0 text-secondary hover:text-primary hover:underline"
+			title={t_verify_login_form_back_button(locale)}
+		>
+			<NavLink title={t_verify_login_form_back_button(locale)} href="/create-account">
+				<ArrowLeftIcon />
+			</NavLink>
+		</MyButton>
 		<MyButton
 			type="submit"
 			title={t_verify_login_form_submit_button(locale)}

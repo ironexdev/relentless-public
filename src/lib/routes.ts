@@ -56,10 +56,34 @@ export const routes: RoutesType = {
 		lastModified: new Date(),
 		protected: true
 	},
-	'/settings': {
+	'/administration/edit-profile': {
 		pathnames: {
-			[LocaleEnum.EN]: '/settings',
-			[LocaleEnum.CS]: '/nastaveni'
+			[LocaleEnum.EN]: '/administration/edit-profile',
+			[LocaleEnum.CS]: '/administrace/upravit-profil'
+		},
+		lastModified: new Date(),
+		protected: true
+	},
+	'/administration/edit-games': {
+		pathnames: {
+			[LocaleEnum.EN]: '/administration/edit-games',
+			[LocaleEnum.CS]: '/administrace/upravit-hry'
+		},
+		lastModified: new Date(),
+		protected: true
+	},
+	'/administration/edit-links': {
+		pathnames: {
+			[LocaleEnum.EN]: '/administration/edit-links',
+			[LocaleEnum.CS]: '/administrace/upravit-odkazy'
+		},
+		lastModified: new Date(),
+		protected: true
+	},
+	'/administration/account-and-privacy': {
+		pathnames: {
+			[LocaleEnum.EN]: '/administration/account-and-privacy',
+			[LocaleEnum.CS]: '/administrace/ucet-a-soukromi'
 		},
 		lastModified: new Date(),
 		protected: true
@@ -80,14 +104,11 @@ for (const canonicalPath in routes) {
 	const route = routes[canonicalPath];
 
 	if (typeof route.pathnames === 'string') {
-		// Set the default mapping, e.g., '/' -> '/'
 		routeMap[route.pathnames] = canonicalPath;
 
-		// Add a special case ONLY for the index page to create localized routes.
 		if (canonicalPath === '/') {
 			for (const locale of locales) {
 				if (locale !== defaultLocale) {
-					// Creates the specific mapping for '/cs' -> '/'
 					routeMap[`/${locale}`] = canonicalPath;
 				}
 			}
@@ -107,13 +128,11 @@ for (const canonicalPath in routes) {
 }
 
 export const getLocalizedUrl = (locale: LocaleType, canonicalPath: string): string => {
-	// Validate the incoming locale and fall back to the default if it's invalid.
 	const validLocale = locales.includes(locale) ? locale : defaultLocale;
 
 	const route = routes[canonicalPath];
 	const isDefaultLocale = validLocale === defaultLocale;
 
-	// Fallback for any path not defined in the routes configuration.
 	if (!route) {
 		return isDefaultLocale ? canonicalPath : `/${validLocale}${canonicalPath}`;
 	}
@@ -122,18 +141,14 @@ export const getLocalizedUrl = (locale: LocaleType, canonicalPath: string): stri
 	let localizedPathSegment: string;
 
 	if (typeof pathnames === 'string') {
-		// Handles non-translated paths, primarily the homepage ('/').
 		localizedPathSegment = pathnames;
 	} else {
-		// Handles translated paths (e.g., '/login' -> '/prihlaseni').
 		localizedPathSegment = pathnames[validLocale] ?? pathnames[defaultLocale];
 	}
 
-	// The root path is a special case: '/cs' instead of '/cs/'.
 	if (localizedPathSegment === '/') {
 		return isDefaultLocale ? '/' : `/${validLocale}`;
 	}
 
-	// Constructs the final URL.
 	return isDefaultLocale ? localizedPathSegment : `/${validLocale}${localizedPathSegment}`;
 };

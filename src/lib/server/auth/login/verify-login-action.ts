@@ -6,7 +6,6 @@ import { db } from '$lib/server/database';
 import { users } from '$lib/server/database/schema/users';
 import { verificationTokens } from '$lib/server/database/schema/verification-tokens';
 import { AuthService } from '$lib/server/services/auth-service';
-import { CookieService } from '$lib/server/services/cookie-service';
 import type { RequestEvent } from '@sveltejs/kit';
 import { fail, redirect } from '@sveltejs/kit';
 import { and, eq, gte } from 'drizzle-orm';

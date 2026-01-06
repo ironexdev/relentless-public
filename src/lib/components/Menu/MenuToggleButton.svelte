@@ -6,6 +6,11 @@
 	import type { LocaleType } from '$lib/types/locale-type';
 	import { MenuIcon } from '@lucide/svelte';
 
+	type Props = {
+		class?: string;
+	};
+
+	const { class: className }: Props = $props();
 	const locale: LocaleType = $derived(page.data.locale);
 </script>
 
@@ -15,6 +20,7 @@
 	onclick={() => toggleMenu()}
 	data-testid="menu-open"
 	title={t_menu_toggle(locale)}
+	class={`text-[#52525B] ${className}`}
 >
 	<MenuIcon />
 </MyButton>

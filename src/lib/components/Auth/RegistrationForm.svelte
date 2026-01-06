@@ -46,7 +46,6 @@
 		name="email"
 		type="email"
 		autocomplete="email"
-		autofocus={true}
 		placeholder={t_registration_form_email_placeholder(locale)}
 		error={response?.data?.email}
 	/>
