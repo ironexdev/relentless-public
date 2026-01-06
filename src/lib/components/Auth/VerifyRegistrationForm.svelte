@@ -15,8 +15,6 @@
 		t_verify_registration_form_pin_label,
 		t_verify_registration_form_pin_placeholder,
 		t_verify_registration_form_back_button,
-		t_verify_registration_form_username_label,
-		t_verify_registration_form_username_placeholder,
 		t_verify_registration_form_birth_year_label,
 		t_verify_registration_form_birth_year_placeholder,
 		t_verify_registration_form_terms_label,
@@ -33,7 +31,6 @@
 	type FormErrors = {
 		email?: string;
 		pin?: string;
-		username?: string;
 		birthYear?: string;
 		terms?: string;
 	};
@@ -110,37 +107,6 @@
 		type="text"
 		placeholder={t_verify_registration_form_pin_placeholder(locale)}
 		error={response?.data?.pin}
-	/>
-
-	<UserProfileImage
-		{locale}
-		bind:pictureFile
-		bind:photoFile
-		bind:picturePreviewUrl
-		bind:photoPreviewUrl
-		showDropzone={true}
-		showEditButton={false}
-	/>
-
-	<p class="w-full text-sm text-secondary">
-		{@html t_verify_registration_image_explanation(locale)}
-	</p>
-
-	<MyInput
-		label={t_verify_registration_form_username_label(locale)}
-		name="username"
-		type="text"
-		autocomplete="username"
-		placeholder={t_verify_registration_form_username_placeholder(locale)}
-		error={response?.data?.username}
-	/>
-
-	<MyInput
-		label={t_verify_registration_form_birth_year_label(locale)}
-		name="birthYear"
-		type="number"
-		placeholder={t_verify_registration_form_birth_year_placeholder(locale)}
-		error={response?.data?.birthYear}
 	/>
 
 	<MyCheckbox name="terms" bind:checked={termsAccepted} error={termsError}>

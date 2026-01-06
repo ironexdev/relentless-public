@@ -8,7 +8,7 @@
 	} from '$lib/i18n/messages/t-verify-login';
 	import type { LocaleType } from '$lib/types/locale-type';
 	import type { PageData } from '../../../.svelte-kit/types/src/routes/create-account/$types';
-	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	const locale: LocaleType = $derived(page.data.locale);
 	const { data }: { data: PageData } = $props();
@@ -34,4 +34,4 @@
 	</div>
 </main>
 
-<Header />
+<Footer />

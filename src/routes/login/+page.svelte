@@ -8,7 +8,10 @@
 	} from '$lib/i18n/messages/t-login';
 	import type { LocaleType } from '$lib/types/locale-type';
 	import type { PageData } from '../../../.svelte-kit/types/src/routes/create-account/$types';
-	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Logo from '$lib/components/Logo.svelte';
+	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';
+	import Menu from '$lib/components/Menu/Menu.svelte';
 
 	const locale: LocaleType = $derived(page.data.locale);
 	const { data }: { data: PageData } = $props();
@@ -35,4 +38,9 @@
 	</section>
 </main>
 
-<Header />
+<Footer>
+	<MenuToggleButton />
+	<Logo class="absolute inset-0 m-auto" /></Footer
+>
+
+<Menu />

@@ -35,33 +35,61 @@ body{
     background-color: var(--scrollbar-thumb-color);
 }
 
-.ntw-header{
-    background: var(--background-image-gradient-header);
+.ntw-footer{
+    background: var(--background-color-primary);
+    bottom: 0;
     height: 80px;
     left: 0;
-    top: 0;
     position: fixed;
     right: 0;
-    z-index: var(--z-index-header);
+    z-index: var(--z-index-footer);
 }
 
 .ntw-main {
     background-image: url("/media/wallpaper.png");
     background-repeat: repeat-y;
     background-size: contain;
+    border-bottom: 1px solid var(--border-color-tertiary);
+    border-radius: 0 0 50px 50px;
+    bottom: 80px;
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
     max-width: 1440px;
     min-height: calc(100vh - 80px);
+    overflow: hidden;
     position: relative;
-    top: 80px;
+    top: 0;
     width: 100%;
 }
 
 @media (min-width: 960px) {
     .ntw-main {
-        border: 1px solid var(--border-color-tertiary);
-        border-bottom: none;
+        border-left: 1px solid var(--border-color-tertiary);
+        border-right: 1px solid var(--border-color-tertiary);
+        border-top: none;
+    }
+}
+
+.ntw-admin-main {
+    background-color: var(--background-color-tertiary);
+    border-bottom: 1px solid var(--border-color-tertiary);
+    border-radius: 0 0 50px 50px;
+    bottom: 80px;
+    display: flex;
+    margin: 0 auto 0 auto;
+    max-width: 1440px;
+    min-height: calc(100vh - 80px);
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+@media (min-width: 960px) {
+    .ntw-admin-main {
+        border-left: 1px solid var(--border-color-tertiary);
+        border-right: 1px solid var(--border-color-tertiary);
+        border-top: none;
     }
 }

@@ -19,10 +19,28 @@ export function t_menu_close(locale: LocaleType): string {
 	return t(messages, locale);
 }
 
-export function t_menu_title(locale: LocaleType): string {
+export function t_menu_general_section_title(locale: LocaleType): string {
 	const messages = {
-		en: 'Main Menu',
-		cs: 'Hlavní menu'
+		en: 'General',
+		cs: 'Obecné'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_menu_administration_section_title(locale: LocaleType): string {
+	const messages = {
+		en: 'Administration',
+		cs: 'Administrace'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_menu_language_switcher_section_title(locale: LocaleType): string {
+	const messages = {
+		en: 'Language',
+		cs: 'Jazyk'
 	};
 
 	return t(messages, locale);
@@ -55,19 +73,46 @@ export function t_menu_item_registration(locale: LocaleType): string {
 	return t(messages, locale);
 }
 
-export function t_menu_item_profile(locale: LocaleType): string {
+export function t_menu_item_public_profile(locale: LocaleType): string {
 	const messages = {
-		en: 'Profile',
-		cs: 'Profil'
+		en: 'Public Profile',
+		cs: 'Veřejný profil'
 	};
 
 	return t(messages, locale);
 }
 
-export function t_menu_item_settings(locale: LocaleType): string {
+export function t_menu_item_edit_profile(locale: LocaleType): string {
 	const messages = {
-		en: 'Settings',
-		cs: 'Nastavení'
+		en: 'Edit Profile',
+		cs: 'Upravit profil'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_menu_item_edit_games(locale: LocaleType): string {
+	const messages = {
+		en: 'Edit Games',
+		cs: 'Upravit hry'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_menu_item_edit_links(locale: LocaleType): string {
+	const messages = {
+		en: 'Edit Links',
+		cs: 'Upravit odkazy'
+	};
+
+	return t(messages, locale);
+}
+
+export function t_menu_item_account_privacy(locale: LocaleType): string {
+	const messages = {
+		en: 'Account & Privacy',
+		cs: 'Účet a soukromí'
 	};
 
 	return t(messages, locale);
