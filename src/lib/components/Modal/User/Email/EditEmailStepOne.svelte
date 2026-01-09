@@ -9,35 +9,23 @@
 		t_user_email_description_step_one,
 		t_user_email_pin_sent_to,
 		t_user_email_step_one_success
-	} from '$lib/i18n/messages/t-user-modal';
+	} from '$lib/i18n/messages/t-user-email-modal';
 	import { handleFormResult } from '$lib/utils/form-utils';
 	import type { SubmitFunction } from '@sveltejs/kit';
-	import { tick } from 'svelte';
 	import { ArrowRightIcon, LoaderCircleIcon } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
 	import { VerificationActionEnum } from '$lib/enums/verification-action-enum';
 
 	type Props = {
 		currentEmail: string;
-		isStepVisible: boolean;
 		onSuccess: () => void;
 		onSkip: () => void;
 	};
 
-	let { currentEmail, isStepVisible, onSuccess, onSkip }: Props = $props();
+	let { currentEmail, onSuccess, onSkip }: Props = $props();
 
 	const locale: LocaleType = $derived(page.data.locale);
 	let isLoading = $state(false);
-	let formRef: HTMLFormElement | undefined = $state();
-
-	$effect(() => {
-		if (isStepVisible && formRef) {
-			tick().then(() => {
-				const button = formRef?.querySelector('button[type="submit"]') as HTMLButtonElement;
-				button?.focus();
-			});
-		}
-	});
 
 	const handleSubmit: SubmitFunction = () => {
 		isLoading = true;
@@ -55,20 +43,19 @@
 </script>
 
 <form
-	bind:this={formRef}
 	method="POST"
-	action="/settings?/request-verification-pin"
+	action="/administration/verification?/request-verification-pin"
 	use:enhance={handleSubmit}
 	novalidate
 	class="flex h-full w-full flex-1 flex-col justify-between"
 >
 	<input type="hidden" name="email" value={currentEmail} />
 	<input type="hidden" name="action" value={VerificationActionEnum.CHANGE_EMAIL} />
-	<div class="flex flex-1 flex-col items-center justify-center gap-2 px-5 pt-5 xxs:px-10">
+	<div class="flex flex-1 flex-col items-center justify-center px-5 pt-5 sm:px-10">
 		<div class="w-full text-sm text-primary sm:text-base">
 			{t_user_email_description_step_one(locale)}
 		</div>
-		<div class="flex w-full flex-1 flex-col items-center justify-center text-center">
+		<div class="flex w-full flex-1 flex-col items-center justify-center py-5 text-center">
 			<div class="w-full">
 				<p class="text-secondary">{t_user_email_pin_sent_to(locale)}</p>
 				<p class="mt-1 text-base font-medium text-primary">{currentEmail}</p>
@@ -76,7 +63,7 @@
 		</div>
 	</div>
 	<div
-		class="flex header-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-header"
+		class="bg-gradient-header flex h-20 w-full shrink-0 items-center justify-center border-t border-t-primary"
 	>
 		<MyButton
 			type="submit"
@@ -99,7 +86,7 @@
 			disabled={isLoading}
 			title={t_user_email_step_one_skip(locale)}
 		>
-			<ArrowRightIcon />
+			<ArrowRightIcon class="opacity-50" />
 		</MyButton>
 	</div>
 </form>

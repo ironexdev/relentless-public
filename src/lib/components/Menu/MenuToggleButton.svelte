@@ -20,7 +20,7 @@
 	onclick={() => toggleMenu()}
 	data-testid="menu-open"
 	title={t_menu_toggle(locale)}
-	class={`text-[#52525B] ${className}`}
+	class={`text-secondary ${className}`}
 >
 	<MenuIcon />
 </MyButton>

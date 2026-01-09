@@ -3,7 +3,7 @@ import { VerificationActionEnum } from '$lib/enums/verification-action-enum';
 import {
 	t_user_email_change_success,
 	t_user_email_invalid_or_expired_pin
-} from '$lib/i18n/messages/t-user-modal';
+} from '$lib/i18n/messages/t-user-email-modal';
 import { getLocalizedUrl } from '$lib/routes';
 import { verifySchema } from '$lib/schemas';
 import { db } from '$lib/server/database';

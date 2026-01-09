@@ -27,10 +27,10 @@
 </svelte:head>
 
 <main class="ntw-admin-main">
-	<aside class="hidden min-h-full w-[360px] border-r border-primary px-5 lg:block">
+	<aside class="hidden min-h-full w-[360px] border-r border-tertiary px-5 lg:block">
 		<Menu class="hidden lg:flex" alwaysVisible />
 	</aside>
-	<section class="relative mx-auto flex min-h-full max-w-[800px] flex-1 flex-col p-20">
+	<section class="relative mx-auto flex min-h-full max-w-[800px] flex-1 flex-col p-10 lg:p-20">
 		<div class="flex-1 pb-10">
 			<div class="flex w-full flex-col gap-10">
 				<h1

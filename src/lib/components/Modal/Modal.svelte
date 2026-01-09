@@ -63,7 +63,7 @@
 </script>
 
 {#if mounted}
-	<div class="contents" use:portal>
+	<div class={UtilsService.cn('contents', !showModal && 'pointer-events-none')} use:portal>
 		<button
 			type="button"
 			aria-label={t_modal_close(locale)}
@@ -77,8 +77,12 @@
 
 		<div
 			class={UtilsService.cn(
-				'pointer-events-auto fixed inset-x-0 top-[15vh] bottom-0 z-modal mx-auto w-full origin-bottom [transform:translate3d(0,100%,0)] rounded-t-[32px] border border-b-0 border-primary bg-tertiary transition-transform duration-xs ease-in-out outline-none',
-				showModal && '[transform:translate3d(0,0,0)]',
+				'fixed inset-x-4 top-1/2 z-modal mx-auto h-[90vh] max-h-[640px] w-[90vw] max-w-[600px] -translate-y-1/2 rounded-[20px]' +
+					' translate-y-[calc(-50%+16px)] scale-95 border-primary bg-tertiary opacity-0 outline-none' +
+					' inset-x-0',
+				showModal
+					? 'pointer-events-auto translate-y-[-50%] scale-100 opacity-100 transition-all duration-xs ease-out'
+					: 'pointer-events-none',
 				className
 			)}
 			role="dialog"
@@ -86,7 +90,7 @@
 			tabindex="-1"
 		>
 			{#if header}
-				<div class="header-based-h w-full shrink-0">
+				<div class="h-20 w-full shrink-0">
 					{@render header()}
 				</div>
 			{/if}

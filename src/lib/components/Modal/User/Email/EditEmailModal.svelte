@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ChevronDown } from '@lucide/svelte';
+	import { XIcon } from '@lucide/svelte';
 	import Modal from '$lib/components/Modal/Modal.svelte';
 	import MyButton from '$lib/components/Button/MyButton.svelte';
 	import StepOne from '$lib/components/Modal/User/Email/EditEmailStepOne.svelte';
@@ -8,7 +8,7 @@
 	import {
 		t_user_email_modal_close,
 		t_user_email_modal_title
-	} from '$lib/i18n/messages/t-user-modal';
+	} from '$lib/i18n/messages/t-user-email-modal';
 	import type { LocaleType } from '$lib/types/locale-type';
 	import { page } from '$app/state';
 
@@ -34,18 +34,18 @@
 
 <Modal bind:showModal className="flex max-w-[640px] flex-col">
 	{#snippet header()}
-		<div class="flex h-full w-full items-center justify-between px-5 pt-12 xxs:px-10">
+		<div class="flex h-full w-full items-center justify-between px-5 pt-12 sm:px-10">
 			<h3 class="text-lg text-secondary">
 				{t_user_email_modal_title(locale)}
 			</h3>
 			<MyButton
 				variant="icon"
 				size="icon-md"
-				class="absolute top-3 right-3 opacity-20 transition-opacity hover:opacity-100"
+				class="absolute top-3 right-3 opacity-50 transition-opacity hover:opacity-100"
 				onclick={() => (showModal = false)}
 				title={t_user_email_modal_close(locale)}
 			>
-				<ChevronDown size={24} />
+				<XIcon size={24} />
 			</MyButton>
 		</div>
 	{/snippet}
@@ -53,14 +53,12 @@
 	{#if currentPage === 1}
 		<StepOne
 			currentEmail={email}
-			isStepVisible={currentPage === 1}
 			onSuccess={() => (currentPage = 2)}
 			onSkip={() => (currentPage = 2)}
 		/>
 	{:else if currentPage === 2}
 		<StepTwo
 			currentEmail={email}
-			isStepVisible={currentPage === 2}
 			onSuccess={(val) => {
 				newEmail = val;
 				currentPage = 3;
@@ -72,6 +70,6 @@
 			}}
 		/>
 	{:else if currentPage === 3}
-		<StepThree {newEmail} isModalVisible={currentPage === 3} onBack={() => (currentPage = 2)} />
+		<StepThree {newEmail} onBack={() => (currentPage = 2)} />
 	{/if}
 </Modal>

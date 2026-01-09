@@ -7,11 +7,11 @@
 		t_login_title
 	} from '$lib/i18n/messages/t-login';
 	import type { LocaleType } from '$lib/types/locale-type';
-	import type { PageData } from '../../../.svelte-kit/types/src/routes/create-account/$types';
 	import Footer from '$lib/components/Footer.svelte';
 	import Logo from '$lib/components/Logo.svelte';
 	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';
 	import Menu from '$lib/components/Menu/Menu.svelte';
+	import type { PageData } from './$types';
 
 	const locale: LocaleType = $derived(page.data.locale);
 	const { data }: { data: PageData } = $props();
@@ -32,7 +32,9 @@
 				{t_login_title(locale)}
 			</h1>
 		</div>
-		<div class="flex-1 border-x border-t border-primary bg-tertiary px-5 py-12 sm:px-10">
+		<div
+			class="flex flex-1 flex-col gap-10 rounded-t-3xl border-t border-tertiary bg-secondary px-5 py-12 sm:border-x sm:px-10"
+		>
 			<LoginForm />
 		</div>
 	</section>

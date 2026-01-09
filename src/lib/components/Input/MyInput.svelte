@@ -4,6 +4,9 @@
 	import { EraserIcon } from '@lucide/svelte';
 	import { cn } from '$lib/utils/string-utils';
 	import type { HTMLInputAttributes } from 'svelte/elements';
+	import { t_input_clear } from '$lib/i18n/messages/t-input.ts';
+	import type { LocaleType } from '$lib/types/locale-type.ts';
+	import { page } from '$app/state';
 
 	type Props = Omit<HTMLInputAttributes, 'value'> & {
 		name: string;
@@ -29,9 +32,8 @@
 		value = '';
 	}
 
-	const finalWrapperClass = $derived(
-		cn('relative flex w-full flex-col flex flex-col gap-1 relative', wrapperClass)
-	);
+	const locale: LocaleType = $derived(page.data.locale);
+	const finalWrapperClass = $derived(cn('relative flex w-full flex-col gap-1', wrapperClass));
 	const finalInputClass = $derived(
 		cn(
 			'w-full h-10 sm:h-11 bg-quaternary rounded outline-none transition-all duration-xs px-5 text-center border-2 border-transparent focus:border-secondary',
@@ -53,8 +55,8 @@
 					variant="blank"
 					size="wrap"
 					onclick={clearInput}
-					aria-label="Clear input"
-					title="Clear input"
+					aria-label={t_input_clear(locale)}
+					title={t_input_clear(locale)}
 					class="absolute inset-y-0 right-3.5 my-auto text-secondary transition-colors duration-xs hover:text-primary"
 				>
 					<EraserIcon class="size-5" />
@@ -72,8 +74,8 @@
 				variant="blank"
 				size="wrap"
 				onclick={clearInput}
-				aria-label="Clear input"
-				title="Clear input"
+				aria-label={t_input_clear(locale)}
+				title={t_input_clear(locale)}
 				class="absolute inset-y-0 right-3.5 my-auto text-secondary transition-colors duration-xs hover:text-primary"
 			>
 				<EraserIcon class="size-5" />

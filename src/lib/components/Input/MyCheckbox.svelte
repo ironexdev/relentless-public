@@ -22,6 +22,6 @@
 		{/if}
 	</label>
 	{#if error}
-		<p class="text-sm text-red-500">{error}</p>
+		<p class="text-sm text-error">{error}</p>
 	{/if}
 </div>

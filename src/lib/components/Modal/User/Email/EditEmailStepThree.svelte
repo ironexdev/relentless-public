@@ -13,36 +13,24 @@
 		t_user_email_step_three_pin_label,
 		t_user_email_step_three_pin_placeholder,
 		t_user_email_description_step_three
-	} from '$lib/i18n/messages/t-user-modal';
+	} from '$lib/i18n/messages/t-user-email-modal';
 	import { type FormResultResponse, handleFormResult } from '$lib/utils/form-utils';
 	import type { SubmitFunction } from '@sveltejs/kit';
-	import { tick } from 'svelte';
 
 	type Props = {
 		newEmail: string;
-		isModalVisible: boolean;
 		onBack: () => void;
 	};
 
-	let { newEmail, isModalVisible, onBack }: Props = $props();
+	let { newEmail, onBack }: Props = $props();
 
 	const locale: LocaleType = $derived(page.data.locale);
 
 	let pin = $state('');
 	let isLoading = $state(false);
-	let formRef: HTMLFormElement | undefined = $state();
 	let response = $state<FormResultResponse<{ email?: string; pin?: string; message?: string }>>();
 
 	let isDirty = $derived(pin.length > 0);
-
-	$effect(() => {
-		if (isModalVisible && formRef) {
-			tick().then(() => {
-				const input = formRef?.querySelector('input[name="pin"]') as HTMLInputElement;
-				input?.focus();
-			});
-		}
-	});
 
 	const handleSubmit: SubmitFunction = () => {
 		isLoading = true;
@@ -60,19 +48,17 @@
 </script>
 
 <form
-	bind:this={formRef}
 	method="POST"
-	action="/settings?/change-email"
+	action="/administration/account-and-privacy?/change-email"
 	use:enhance={handleSubmit}
 	novalidate
 	class="flex h-full w-full flex-1 flex-col justify-between"
 >
 	<input type="hidden" name="email" value={newEmail} />
-	<div class="flex flex-1 flex-col justify-between gap-5 px-5 pt-5 xxs:px-10">
+	<div class="flex flex-1 flex-col justify-between px-5 pt-5 sm:px-10">
 		<div class="w-full text-sm text-primary sm:text-base">
 			{t_user_email_description_step_three(locale)}
 		</div>
-
 		<div class="flex w-full flex-1 flex-col items-center justify-center gap-5">
 			<div class="flex w-full flex-col gap-5">
 				<MyInput
@@ -85,7 +71,7 @@
 					error={response?.data?.pin}
 				/>
 
-				<div class="flex items-center gap-2.5 text-sm text-primary">
+				<div class="flex items-center gap-2.5 text-sm text-secondary">
 					<InfoIcon class="shrink-0" size={20} />
 					<span>{t_user_email_step_three_info(locale)}</span>
 				</div>
@@ -94,7 +80,7 @@
 	</div>
 
 	<div
-		class="flex header-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-header"
+		class="bg-gradient-header flex h-20 w-full shrink-0 items-center justify-center border-t border-t-primary"
 	>
 		<MyButton
 			type="button"
@@ -105,7 +91,7 @@
 			disabled={isLoading}
 			title={t_user_email_step_three_back(locale)}
 		>
-			<ArrowLeftIcon />
+			<ArrowLeftIcon class="opacity-50" />
 		</MyButton>
 		<MyButton
 			type="submit"

@@ -24,13 +24,13 @@ import {
 	t_email_change_email_attempt_sentence3
 } from '$lib/i18n/messages/t-email';
 import type { LocaleType } from '$lib/types/locale-type';
-import TemplateService from '../template-service';
 import loginEmailTemplate from '$lib/server/email-templates/login-email.hbs?raw';
 import loginAttemptEmailTemplate from '$lib/server/email-templates/login-attempt-email.hbs?raw';
 import registrationEmailTemplate from '$lib/server/email-templates/registration-email.hbs?raw';
 import registrationAttemptEmailTemplate from '$lib/server/email-templates/registration-attempt-email.hbs?raw';
 import verificationEmailTemplate from '$lib/server/email-templates/verification-email.hbs?raw';
 import changeEmailAttemptEmailTemplate from '$lib/server/email-templates/change-email-attempt-email.hbs?raw';
+import TemplateService from '$lib/server/services/template-service.ts';
 
 export type CompiledTemplateResultType = {
 	text: string;

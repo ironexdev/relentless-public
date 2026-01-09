@@ -1,6 +1,9 @@
 import { z } from 'zod';
-import { t_validation_invalid_email, t_validation_invalid_pin } from './i18n/messages/t-validation';
-import type { LocaleType } from './types/locale-type';
+import type { LocaleType } from '$lib/types/locale-type.ts';
+import {
+	t_validation_invalid_email,
+	t_validation_invalid_pin
+} from '$lib/i18n/messages/t-validation.ts';
 
 export const loginSchema = (locale: LocaleType) =>
 	z.object({

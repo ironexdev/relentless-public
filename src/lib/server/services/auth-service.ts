@@ -6,7 +6,7 @@ import crypto from 'crypto';
 import { eq } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
 import { env } from '$env/dynamic/private';
-import { CookieService } from './cookie-service';
+import { CookieService } from '$lib/server/services/cookie-service.ts';
 
 type UserPayload = {
 	id: string;

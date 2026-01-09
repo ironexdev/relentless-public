@@ -150,7 +150,7 @@ async function handleAuth(event: RequestEvent) {
 				event.locals.user = {
 					userId: decoded.userId as string,
 					email: decoded.email as string,
-					createdAt: decoded.createdAd as Date
+					createdAt: decoded.createdAt as Date
 				};
 				return;
 			}

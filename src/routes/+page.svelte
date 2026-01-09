@@ -22,13 +22,15 @@
 </svelte:head>
 
 <main class="ntw-main">
-	<div class="relative mx-auto flex min-h-full w-full max-w-[640px] min-w-[320px] flex-1 flex-col">
+	<section
+		class="relative mx-auto flex min-h-full w-full max-w-[640px] min-w-[320px] flex-1 flex-col"
+	>
 		<div class="flex h-[35vh] w-full items-center justify-center">
 			<h1 class="w-full text-center text-3xl text-primary sm:text-4xl">
 				{t_home_title(locale)}
 			</h1>
 		</div>
-	</div>
+	</section>
 </main>
 
 <Footer>

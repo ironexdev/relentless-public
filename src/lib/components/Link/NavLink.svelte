@@ -8,7 +8,7 @@
 
 	const locale: LocaleType = $derived(page.data.locale);
 	const linkVariants = cva(
-		'relative overflow-hidden flex items-center justify-center select-none disabled:pointer-events-none cursor-pointer disabled:opacity-50 outline-none transition-colors',
+		'relative overflow-hidden flex items-center justify-center select-none aria-disabled:pointer-events-none cursor-pointer aria-disabled:opacity-50 outline-none transition-colors',
 		{
 			variants: {
 				variant: {
@@ -32,7 +32,6 @@
 			}
 		}
 	);
-
 	type Props = VariantProps<typeof linkVariants> &
 		HTMLAnchorAttributes & {
 			title: string;
@@ -43,6 +42,7 @@
 			locale?: LocaleType;
 			isExternal?: boolean;
 			activeClass?: string;
+			disabled?: boolean;
 		};
 
 	let {
@@ -56,6 +56,7 @@
 		activeClass,
 		title,
 		'aria-label': ariaLabel,
+		disabled = false,
 		...rest
 	}: Props = $props();
 
@@ -65,6 +66,15 @@
 	const finalClass = $derived(
 		cn(linkVariants({ variant, size, class: className }), currentPath === finalHref && activeClass)
 	);
+
+	function handleClick(e: MouseEvent) {
+		if (disabled) {
+			e.preventDefault();
+			e.stopPropagation();
+			return;
+		}
+		onclick?.(e);
+	}
 </script>
 
 <a
@@ -72,10 +82,12 @@
 	class={finalClass}
 	{title}
 	aria-label={ariaLabel ?? title}
+	aria-disabled={disabled ? 'true' : undefined}
+	tabindex={disabled ? -1 : undefined}
 	{...rest}
 	target={isExternal ? '_blank' : rest.target}
 	rel={isExternal ? 'noopener noreferrer' : rest.rel}
-	{onclick}
+	onclick={handleClick}
 >
 	{@render children()}
 </a>

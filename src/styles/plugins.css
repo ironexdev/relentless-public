@@ -14,6 +14,10 @@
 
 /* Custom Button Utilities *************************************************/
 /***************************************************************************/
+@utility shadow-dark {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
 @utility shadow-button {
     box-shadow: 0 0 20px 0 var(--colors-violet-500);
 }

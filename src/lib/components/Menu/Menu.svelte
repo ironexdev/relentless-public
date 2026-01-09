@@ -171,6 +171,7 @@
 				size="md"
 				activeClass="bg-quaternary"
 				title={t_menu_item_public_profile(locale)}
+				disabled
 			>
 				<UserRoundIcon class="size-5" />
 				<span class="ml-3">{t_menu_item_public_profile(locale)}</span>

@@ -3,7 +3,7 @@
 	import { t_profile_title } from '$lib/i18n/messages/t-profile';
 	import { t_profile_meta_description, t_profile_page_title } from '$lib/i18n/messages/t-profile';
 	import type { LocaleType } from '$lib/types/locale-type';
-	import type { PageData } from '../../../.svelte-kit/types/src/routes/create-account/$types';
+	import type { PageData } from './$types';
 	import Footer from '$lib/components/Footer.svelte';
 	import Logo from '$lib/components/Logo.svelte';
 	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';

@@ -8,15 +8,15 @@
 		t_account_and_privacy_email_label,
 		t_account_and_privacy_meta_description,
 		t_account_and_privacy_page_title,
-		t_account_and_privacy_title,
-		t_account_and_privacy_username_label
+		t_account_and_privacy_title
 	} from '$lib/i18n/messages/administration/t-account-and-privacy.ts';
 	import type { LocaleType } from '$lib/types/locale-type.ts';
-	import type { PageData } from '../../../../.svelte-kit/types/src/routes/create-account/$types';
+	import type { PageData } from './$types';
 	import MyButton from '$lib/components/Button/MyButton.svelte';
 	import { PencilLineIcon, Trash2Icon } from '@lucide/svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import EditEmailModal from '$lib/components/Modal/User/Email/EditEmailModal.svelte';
+	import DeleteAccountModal from '$lib/components/Modal/User/Delete/DeleteAccountModal.svelte';
 	import Menu from '$lib/components/Menu/Menu.svelte';
 	import Logo from '$lib/components/Logo.svelte';
 	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';
@@ -26,6 +26,7 @@
 	const user = $derived(page.data.user!);
 
 	let showEditEmail = $state(false);
+	let showDeleteAccount = $state(false);
 </script>
 
 <svelte:head>
@@ -35,13 +36,15 @@
 </svelte:head>
 
 <main class="ntw-admin-main">
-	<aside class="hidden min-h-full w-[360px] border-r border-primary bg-tertiary px-5 lg:block">
+	<aside class="hidden min-h-full w-[360px] border-r border-tertiary px-5 lg:block">
 		<Menu class="hidden lg:flex" alwaysVisible />
 	</aside>
-	<section class="relative mx-auto flex min-h-full max-w-[800px] flex-1 flex-col p-20">
+	<section
+		class="relative mx-auto flex min-h-full max-w-[800px] flex-1 flex-col px-5 py-10 lg:p-20"
+	>
 		<div class="flex-1 pb-10">
 			<div class="flex w-full flex-col gap-10">
-				<h1 id="settings-heading" class="w-full pb-5 text-left text-3xl text-primary sm:text-4xl">
+				<h1 class="w-full pb-5 text-left text-xl text-primary sm:text-3xl">
 					{t_account_and_privacy_title(locale)}
 				</h1>
 				<!-- Email -->
@@ -73,7 +76,7 @@
 								size="icon-md"
 								variant="icon"
 								title={t_account_and_privacy_delete_account_button_title(locale)}
-								><Trash2Icon class="size-5" /></MyButton
+								onclick={() => (showDeleteAccount = true)}><Trash2Icon class="size-5" /></MyButton
 							>
 						</dt>
 						<dd class="w-full">
@@ -94,3 +97,4 @@
 <Menu class="lg:hidden" overlayClass="lg:hidden" />
 
 <EditEmailModal bind:showModal={showEditEmail} email={user.email} />
+<DeleteAccountModal bind:showModal={showDeleteAccount} email={user.email} />

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AssetImage from './AssetImage.svelte';
+	import AssetImage from '$lib/components/Image/AssetImage.svelte';
 
 	type Props = {
 		path: string | null;

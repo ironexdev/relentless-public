@@ -16,41 +16,29 @@
 		t_user_email_step_two_skip,
 		t_user_email_description_step_two,
 		t_user_email_step_two_success
-	} from '$lib/i18n/messages/t-user-modal';
+	} from '$lib/i18n/messages/t-user-email-modal';
 	import { type FormResultResponse, handleFormResult } from '$lib/utils/form-utils';
 	import type { SubmitFunction } from '@sveltejs/kit';
-	import { tick } from 'svelte';
 	import { toast } from 'svelte-sonner';
 
 	type Props = {
 		currentEmail: string;
-		isStepVisible: boolean;
 		onSuccess: (email: string) => void;
 		onBack: () => void;
 		onSkip: (email: string) => void;
 	};
 
-	let { currentEmail, isStepVisible, onSuccess, onBack, onSkip }: Props = $props();
+	let { currentEmail, onSuccess, onBack, onSkip }: Props = $props();
 
 	const locale: LocaleType = $derived(page.data.locale);
 
 	let email = $state('');
 	let pin = $state('');
 	let isLoading = $state(false);
-	let formRef: HTMLFormElement | undefined = $state();
 	let response =
 		$state<FormResultResponse<{ newEmail?: string; pin?: string; message?: string }>>();
 
 	let isDirty = $derived(email.length > 0 || pin.length > 0);
-
-	$effect(() => {
-		if (isStepVisible && formRef) {
-			tick().then(() => {
-				const input = formRef?.querySelector('input[type="email"]') as HTMLInputElement;
-				input?.focus();
-			});
-		}
-	});
 
 	const handleSubmit: SubmitFunction = () => {
 		isLoading = true;
@@ -69,20 +57,19 @@
 </script>
 
 <form
-	bind:this={formRef}
 	method="POST"
-	action="/settings?/verify-change-email"
+	action="/administration/account-and-privacy?/verify-change-email"
 	use:enhance={handleSubmit}
 	novalidate
 	class="flex h-full w-full flex-1 flex-col justify-between"
 >
 	<input type="hidden" name="currentEmail" value={currentEmail} />
-	<div class="flex flex-1 flex-col justify-between gap-5 px-5 pt-5 xxs:px-10">
+	<div class="flex flex-1 flex-col items-center justify-center px-5 pt-5 sm:px-10">
 		<div class="w-full text-sm text-primary sm:text-base">
 			{t_user_email_description_step_two(locale)}
 		</div>
 
-		<div class="flex w-full flex-1 flex-col items-center justify-center gap-5">
+		<div class="flex w-full flex-1 flex-col items-center justify-center gap-5 py-5">
 			<div class="flex w-full flex-col gap-5">
 				<MyInput
 					bind:value={email}
@@ -104,7 +91,7 @@
 					error={response?.data?.pin}
 				/>
 
-				<div class="flex items-center gap-2.5 text-sm text-primary">
+				<div class="flex items-center gap-2.5 text-sm text-secondary">
 					<InfoIcon class="shrink-0" size={20} />
 					<span> {t_user_email_step_two_info(locale)}</span>
 				</div>
@@ -113,7 +100,7 @@
 	</div>
 
 	<div
-		class="flex header-based-h w-full shrink-0 items-center justify-center border-t border-t-primary bg-gradient-header"
+		class="bg-gradient-header flex h-20 w-full shrink-0 items-center justify-center border-t border-t-primary"
 	>
 		<MyButton
 			type="button"
@@ -124,7 +111,7 @@
 			disabled={isLoading}
 			title={t_user_email_step_two_back(locale)}
 		>
-			<ArrowLeftIcon />
+			<ArrowLeftIcon class="opacity-50" />
 		</MyButton>
 		<MyButton
 			type="submit"
@@ -147,7 +134,7 @@
 			disabled={isLoading}
 			title={t_user_email_step_two_skip(locale)}
 		>
-			<ArrowRightIcon />
+			<ArrowRightIcon class="opacity-50" />
 		</MyButton>
 	</div>
 </form>

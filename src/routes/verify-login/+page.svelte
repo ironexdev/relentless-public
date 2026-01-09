@@ -7,8 +7,11 @@
 		t_verify_login_title
 	} from '$lib/i18n/messages/t-verify-login';
 	import type { LocaleType } from '$lib/types/locale-type';
-	import type { PageData } from '../../../.svelte-kit/types/src/routes/create-account/$types';
+	import type { PageData } from './$types';
 	import Footer from '$lib/components/Footer.svelte';
+	import Menu from '$lib/components/Menu/Menu.svelte';
+	import Logo from '$lib/components/Logo.svelte';
+	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';
 
 	const locale: LocaleType = $derived(page.data.locale);
 	const { data }: { data: PageData } = $props();
@@ -22,16 +25,25 @@
 </svelte:head>
 
 <main class="ntw-main">
-	<div class="relative mx-auto flex min-h-full w-full max-w-[640px] min-w-[320px] flex-1 flex-col">
+	<section
+		class="relative mx-auto flex min-h-full w-full max-w-[640px] min-w-[320px] flex-1 flex-col"
+	>
 		<div class="flex h-[35vh] w-full items-center justify-center">
 			<h1 class="w-full text-center text-3xl text-primary sm:text-4xl">
 				{t_verify_login_title(locale)}
 			</h1>
 		</div>
-		<div class="flex-1 bg-tertiary px-5 py-12 sm:px-10">
+		<div
+			class="flex flex-1 flex-col gap-10 rounded-t-3xl border-t border-tertiary bg-secondary px-5 py-12 sm:border-x sm:px-10"
+		>
 			<VerifyLoginForm {email} />
 		</div>
-	</div>
+	</section>
 </main>
 
-<Footer />
+<Footer>
+	<MenuToggleButton />
+	<Logo class="absolute inset-0 m-auto" /></Footer
+>
+
+<Menu />

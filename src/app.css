@@ -46,9 +46,6 @@ body{
 }
 
 .ntw-main {
-    background-image: url("/media/wallpaper.png");
-    background-repeat: repeat-y;
-    background-size: contain;
     border-bottom: 1px solid var(--border-color-tertiary);
     border-radius: 0 0 50px 50px;
     bottom: 80px;
