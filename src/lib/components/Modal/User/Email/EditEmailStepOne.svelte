@@ -44,7 +44,7 @@
 
 <form
 	method="POST"
-	action="/administration/verification?/request-verification-pin"
+	action="/routes/administration/verification?/request-verification-pin"
 	use:enhance={handleSubmit}
 	novalidate
 	class="flex h-full w-full flex-1 flex-col justify-between"

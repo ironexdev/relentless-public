@@ -32,8 +32,8 @@
 		UserRoundPlusIcon,
 		XIcon
 	} from '@lucide/svelte';
-	import { getLocalizedUrl } from '$lib/routes';
 	import type { LocaleType } from '$lib/types/locale-type';
+	import { getLocalizedUrl } from '$lib/routes.ts';
 
 	type Props = {
 		alwaysVisible?: boolean;

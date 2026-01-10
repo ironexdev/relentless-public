@@ -48,7 +48,7 @@
 
 <form
 	method="POST"
-	action="/auth?/verify-login"
+	action="/?/verify-login"
 	use:enhance={handleSubmit}
 	class="flex flex-col items-center gap-10"
 >

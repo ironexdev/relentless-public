@@ -36,7 +36,7 @@
 
 <form
 	method="POST"
-	action="/auth?/registration"
+	action="/?/registration"
 	novalidate
 	use:enhance={handleSubmit}
 	class="flex flex-col items-center gap-10"

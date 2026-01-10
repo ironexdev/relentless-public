@@ -6,10 +6,10 @@
 	} from '$lib/i18n/messages/t-home';
 	import { page } from '$app/state';
 	import type { LocaleType } from '$lib/types/locale-type';
+	import Menu from '$lib/components/Menu/Menu.svelte';
+	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Logo from '$lib/components/Logo.svelte';
-	import MenuToggleButton from '$lib/components/Menu/MenuToggleButton.svelte';
-	import Menu from '$lib/components/Menu/Menu.svelte';
 
 	const currentPath = $derived(page.url.pathname);
 	const locale: LocaleType = $derived(page.data.locale);

@@ -58,7 +58,7 @@
 
 <form
 	method="POST"
-	action="/administration/account-and-privacy?/verify-change-email"
+	action="/routes/administration/account-and-privacy?/verify-change-email"
 	use:enhance={handleSubmit}
 	novalidate
 	class="flex h-full w-full flex-1 flex-col justify-between"

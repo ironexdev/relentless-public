@@ -16,7 +16,7 @@
 	const { class: className, buttonClass, size = 'md', variant = 'primary' }: Props = $props();
 </script>
 
-<form method="POST" action="/auth?/logout" class={className}>
+<form method="POST" action="/?/logout" class={className}>
 	<MyButton
 		type="submit"
 		variant={variant === 'icon' ? 'icon' : 'menu'}

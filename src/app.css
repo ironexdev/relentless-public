@@ -18,7 +18,7 @@ html {
     width: 100%;
 }
 
-body{
+body {
     background-color: var(--background-color-primary);
     color: var(--text-color-primary);
     font-family: 'Readex Pro', sans-serif;
@@ -35,28 +35,35 @@ body{
     background-color: var(--scrollbar-thumb-color);
 }
 
-.ntw-footer{
+.ntw-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.ntw-announcement {
+    flex-shrink: 0;
+}
+
+.ntw-footer {
     background: var(--background-color-primary);
-    bottom: 0;
+    flex-shrink: 0;
     height: 80px;
-    left: 0;
-    position: fixed;
-    right: 0;
-    z-index: var(--z-index-footer);
+    position: relative;
 }
 
 .ntw-main {
+    background-image: url("/media/wallpaper.png");
+    background-repeat: repeat-y;
+    background-size: contain;
     border-bottom: 1px solid var(--border-color-tertiary);
     border-radius: 0 0 50px 50px;
-    bottom: 80px;
     display: flex;
+    flex: 1;
     flex-direction: column;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
     max-width: 1440px;
-    min-height: calc(100vh - 80px);
     overflow: hidden;
-    position: relative;
-    top: 0;
     width: 100%;
 }
 
@@ -72,14 +79,11 @@ body{
     background-color: var(--background-color-tertiary);
     border-bottom: 1px solid var(--border-color-tertiary);
     border-radius: 0 0 50px 50px;
-    bottom: 80px;
     display: flex;
-    margin: 0 auto 0 auto;
+    flex: 1;
+    margin: 0 auto;
     max-width: 1440px;
-    min-height: calc(100vh - 80px);
     overflow: hidden;
-    position: relative;
-    top: 0;
     width: 100%;
 }
 

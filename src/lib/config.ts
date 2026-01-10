@@ -21,3 +21,5 @@ export const ALLOWED_IMAGE_MIME_TYPES = {
 	'image/webp': ['.webp'],
 	'image/heic': ['.heic']
 };
+
+export const TOAST_DURATION = 6000;

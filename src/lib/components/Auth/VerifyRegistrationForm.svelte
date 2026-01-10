@@ -86,7 +86,7 @@
 
 <form
 	method="POST"
-	action="/auth?/verify-registration"
+	action="/?/verify-registration"
 	use:enhance={handleSubmit}
 	enctype="multipart/form-data"
 	class="flex flex-col items-center gap-10"

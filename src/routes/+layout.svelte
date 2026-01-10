@@ -5,8 +5,15 @@
 	import type { Snippet } from 'svelte';
 	import { Toaster, toast } from 'svelte-sonner';
 	import { page } from '$app/state';
+	import Announcement from '$lib/components/Announcement.svelte';
+	import type { LocaleType } from '$lib/types/locale-type';
+	import { t_announcement_activate_profile } from '$lib/i18n/messages/t-announcement.ts';
+	import { TOAST_DURATION } from '$lib/config.ts';
 
 	const { children }: { children: Snippet } = $props();
+	const locale: LocaleType = $derived(page.data.locale);
+	const user = $derived(page.data.user);
+	const announcementMessage = $derived(user ? t_announcement_activate_profile(locale) : undefined);
 
 	$effect(() => {
 		if (page.data.toast?.type === ToastEnum.SUCCESS) {
@@ -31,11 +38,14 @@
 	<XIcon class="size-5 cursor-pointer" />
 {/snippet}
 
-{@render children()}
+<div class="ntw-wrapper">
+	<Announcement message={announcementMessage} />
+	{@render children()}
+</div>
 
 <Toaster
 	gap={10}
-	duration={6000}
+	duration={TOAST_DURATION}
 	position="top-center"
 	class="ml-0 gap-3"
 	closeButton={true}

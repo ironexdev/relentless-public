@@ -39,7 +39,7 @@
 <form
 	method="POST"
 	novalidate
-	action="/auth?/login"
+	action="/?/login"
 	use:enhance={handleSubmit}
 	class="flex flex-col items-center gap-10"
 >
