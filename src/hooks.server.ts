@@ -18,6 +18,7 @@ import { env } from '$env/dynamic/private';
 import { db } from '$lib/server/database';
 import { and, eq, gte } from 'drizzle-orm';
 import { refreshTokens } from '$lib/server/database/schema/refresh-tokens';
+import { users } from '$lib/server/database/schema/users';
 import { AuthService } from '$lib/server/services/auth-service';
 import { CookieService } from '$lib/server/services/cookie-service';
 import { getLocalizedUrl, routes } from '$lib/routes';
@@ -82,9 +83,6 @@ export const handleError: HandleServerError = ({ error, event }) => {
 		event.request.headers.get('x-forwarded-for')?.split(',')[0] || event.getClientAddress();
 	const status = isHttpError(error) ? error.status : 500;
 
-	// Determine if full error message should be shown to client
-	// Always show for 4xx (client errors)
-	// Show for 5xx only if NOT in production (for debugging)
 	const isSafeToExpose = status < 500 || env.NODE_ENV !== EnvironmentEnum.PRODUCTION;
 
 	const message =
@@ -95,7 +93,6 @@ export const handleError: HandleServerError = ({ error, event }) => {
 				: 'Internal Server Error';
 
 	if (status !== 404) {
-		// Pino handles redaction here automatically based on logger.ts config
 		logger.error(
 			{
 				type: 'error',
@@ -147,16 +144,23 @@ async function handleAuth(event: RequestEvent) {
 		try {
 			const decoded = jwt.verify(accessToken, env.JWT_SECRET);
 			if (typeof decoded === 'object' && 'userId' in decoded && 'email' in decoded) {
-				event.locals.user = {
-					userId: decoded.userId as string,
-					email: decoded.email as string,
-					createdAt: decoded.createdAt as Date
-				};
-				return;
+				const user = await db.query.users.findFirst({
+					where: eq(users.id, decoded.userId as string)
+				});
+
+				if (user) {
+					event.locals.user = {
+						userId: user.id,
+						email: user.email,
+						username: user.username,
+						profileLink: user.profileLink,
+						yearOfBirth: user.yearOfBirth,
+						createdAt: user.createdAt
+					};
+					return;
+				}
 			}
-		} catch {
-			// Access token is invalid, proceed to refresh logic
-		}
+		} catch {}
 	}
 
 	if (refreshTokenCode) {
@@ -170,7 +174,14 @@ async function handleAuth(event: RequestEvent) {
 		if (storedToken && storedToken.user) {
 			const { user, id: oldTokenId } = storedToken;
 			await AuthService.refreshSession(event.cookies, user, oldTokenId);
-			event.locals.user = { userId: user.id, email: user.email, createdAt: user.createdAt };
+			event.locals.user = {
+				userId: user.id,
+				email: user.email,
+				username: user.username,
+				profileLink: user.profileLink,
+				yearOfBirth: user.yearOfBirth,
+				createdAt: user.createdAt
+			};
 			return;
 		} else {
 			CookieService.deleteAuthCookies(event.cookies);

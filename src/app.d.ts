@@ -8,6 +8,9 @@ declare global {
 			user: {
 				userId: string;
 				email: string;
+				username: string | null;
+				profileLink: string | null;
+				yearOfBirth: number | null;
 				createdAt: Date;
 			} | null;
 			canonicalPath: string;

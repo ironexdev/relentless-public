@@ -6,15 +6,10 @@
 	import { Toaster, toast } from 'svelte-sonner';
 	import { page } from '$app/state';
 	import Announcement from '$lib/components/Announcement.svelte';
-	import type { LocaleType } from '$lib/types/locale-type';
-	import { t_announcement_activate_profile } from '$lib/i18n/messages/t-announcement.ts';
 	import { TOAST_DURATION } from '$lib/config.ts';
-	import ToastTester from '$lib/components/Test/ToastTester.svelte';
 
 	const { children }: { children: Snippet } = $props();
-	const locale: LocaleType = $derived(page.data.locale);
-	const user = $derived(page.data.user);
-	const announcementMessage = $derived(user ? t_announcement_activate_profile(locale) : undefined);
+	const announcementMessage = $derived(page.data.announcementMessage);
 
 	$effect(() => {
 		if (page.data.toast?.type === ToastEnum.SUCCESS) {
@@ -42,7 +37,6 @@
 <div class="ntw-wrapper">
 	<Announcement message={announcementMessage} />
 	{@render children()}
-	<ToastTester />
 </div>
 
 <Toaster
@@ -55,11 +49,11 @@
 	toastOptions={{
 		unstyled: true,
 		classes: {
-			toast: 'text-white border-none w-[320px] rounded p-2.5 flex items-center gap-2.5 mt-8',
-			success: 'bg-toast-success',
-			error: 'bg-toast-error',
-			warning: 'bg-toast-warning',
-			info: 'bg-toast-info',
+			toast: ' border-none w-[320px] rounded p-2.5 flex items-center gap-2.5 mt-8',
+			success: 'text-toast-success bg-toast-success',
+			error: 'text-toast-error bg-toast-error',
+			warning: 'text-toast-warning bg-toast-warning',
+			info: 'text-toast-info bg-toast-info',
 			icon: 'order-first',
 			closeButton: 'order-last ml-auto'
 		}

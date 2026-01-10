@@ -25,7 +25,7 @@
 	</h1>
 </div>
 <div
-	class="flex flex-1 flex-col gap-10 rounded-t-3xl border-t border-tertiary bg-secondary px-5 py-12 sm:border-x sm:px-10"
+	class="flex flex-1 flex-col gap-10 rounded-t-3xl border-t border-tertiary bg-tertiary px-5 py-12 sm:border-x sm:px-10"
 >
 	<LoginForm />
 </div>

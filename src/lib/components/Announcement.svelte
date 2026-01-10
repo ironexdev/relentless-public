@@ -8,7 +8,7 @@
 
 {#if message}
 	<div
-		class="ntw-announcement flex items-center justify-center bg-green-300 px-4 py-2 text-sm text-green-900"
+		class="ntw-announcement mx-auto flex w-full max-w-[1440px] items-center justify-center bg-announcement px-4 py-2 text-sm text-announcement"
 	>
 		{message}
 	</div>
