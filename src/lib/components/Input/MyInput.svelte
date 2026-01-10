@@ -7,6 +7,7 @@
 	import { t_input_clear } from '$lib/i18n/messages/t-input.ts';
 	import type { LocaleType } from '$lib/types/locale-type.ts';
 	import { page } from '$app/state';
+	import { AsteriskIcon } from '@lucide/svelte';
 
 	type Props = Omit<HTMLInputAttributes, 'value'> & {
 		name: string;
@@ -16,6 +17,7 @@
 		class?: string;
 		wrapperClass?: string;
 		error?: string;
+		onclear?: () => void;
 	};
 
 	let {
@@ -26,10 +28,13 @@
 		wrapperClass,
 		type = 'text',
 		error,
+		onclear,
+		required,
 		...rest
 	}: Props = $props();
 	function clearInput() {
 		value = '';
+		onclear?.();
 	}
 
 	const locale: LocaleType = $derived(page.data.locale);
@@ -46,9 +51,11 @@
 
 {#if wrapInLabel}
 	<label class={finalWrapperClass}>
-		<span class="mb-1 text-sm text-secondary uppercase">{label}</span>
+		<span class="mb-1 text-sm text-secondary uppercase">
+			{label}{#if required}&nbsp;<span class="text-error">*</span>{/if}
+		</span>
 		<span class="relative flex items-center">
-			<input bind:value {type} class={finalInputClass} {...rest} />
+			<input bind:value {type} {required} class={finalInputClass} {...rest} />
 			{#if value}
 				<MyButton
 					type="button"
@@ -67,7 +74,7 @@
 	</label>
 {:else}
 	<div class={finalWrapperClass}>
-		<input bind:value {type} class={finalInputClass} aria-label={label} {...rest} />
+		<input bind:value {type} {required} class={finalInputClass} aria-label={label} {...rest} />
 		{#if value}
 			<MyButton
 				type="button"

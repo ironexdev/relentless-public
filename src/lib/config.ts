@@ -1,4 +1,5 @@
 export const APP_TITLE = 'Relentless';
+export const APP_DOMAIN = 'relentless.by-ironex.com';
 export const ACCESS_TOKEN_COOKIE_NAME = 'ACCESS_TOKEN';
 export const ACCESS_TOKEN_EXPIRATION_SECONDS = 60 * 15; // 15 minutes
 export const REFRESH_TOKEN_COOKIE_NAME = 'REFRESH_TOKEN';

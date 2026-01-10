@@ -78,4 +78,5 @@
 </section>
 
 <EditEmailModal bind:showModal={showEditEmail} email={user.email} />
+
 <DeleteAccountModal bind:showModal={showDeleteAccount} email={user.email} />

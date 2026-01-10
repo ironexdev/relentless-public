@@ -9,7 +9,8 @@ import { fail } from '@sveltejs/kit';
 
 const allowedActions = [
 	VerificationActionEnum.CHANGE_EMAIL,
-	VerificationActionEnum.DELETE_USER
+	VerificationActionEnum.DELETE_USER,
+	VerificationActionEnum.UPDATE_PROFILE
 ] as const;
 
 type AllowedAction = (typeof allowedActions)[number];
