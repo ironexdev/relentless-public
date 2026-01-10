@@ -9,6 +9,7 @@
 	import type { LocaleType } from '$lib/types/locale-type';
 	import { t_announcement_activate_profile } from '$lib/i18n/messages/t-announcement.ts';
 	import { TOAST_DURATION } from '$lib/config.ts';
+	import ToastTester from '$lib/components/Test/ToastTester.svelte';
 
 	const { children }: { children: Snippet } = $props();
 	const locale: LocaleType = $derived(page.data.locale);
@@ -41,6 +42,7 @@
 <div class="ntw-wrapper">
 	<Announcement message={announcementMessage} />
 	{@render children()}
+	<ToastTester />
 </div>
 
 <Toaster
@@ -53,7 +55,7 @@
 	toastOptions={{
 		unstyled: true,
 		classes: {
-			toast: 'text-white border-none w-[320px] rounded p-2.5 flex items-center gap-2.5',
+			toast: 'text-white border-none w-[320px] rounded p-2.5 flex items-center gap-2.5 mt-8',
 			success: 'bg-toast-success',
 			error: 'bg-toast-error',
 			warning: 'bg-toast-warning',

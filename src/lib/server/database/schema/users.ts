@@ -1,5 +1,5 @@
 import { type InferInsertModel, sql } from 'drizzle-orm';
-import { pgTable, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgTable, timestamp, varchar } from 'drizzle-orm/pg-core';
 import type { InferSelectModel } from 'drizzle-orm/table';
 import crypto from 'crypto';
 
@@ -16,7 +16,8 @@ export const users = pgTable('users', {
 	username: varchar('username', { length: 255 }).unique(),
 	picture: varchar('picture', { length: 2000 }),
 	photo: varchar('photo', { length: 2000 }),
-	dob: timestamp('dob', { mode: 'date', precision: 3 }),
+	yearOfBirth: integer('year_of_birth'),
+	profileLink: varchar('profile_link', { length: 255 }).unique(),
 	createdAt: timestamp('created_at').notNull().defaultNow(),
 	updatedAt: timestamp('updated_at').$onUpdate(() => new Date())
 });
